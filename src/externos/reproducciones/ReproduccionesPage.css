@@ -1,0 +1,91 @@
+.body-generico {
+  width: 100%;
+  height: 100vh;
+  background-image: url('/assets/fondo_generico.webp');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-color: #000000;
+}
+
+.body-pasteleria {
+  width: 100%;
+  height: 100vh;
+  background-image: url('/assets/fondo_pasteleria.webp');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-color: #000000;
+}
+
+.body-cafeteria {
+  width: 100%;
+  height: 100vh;
+  background-image: url('/assets/fondo_cafeteria.webp');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-color: #000000;
+}
+
+.imagen {
+  width: 600px;
+  height: 600px;
+  /* bottom: -10px; */
+  rotate: 30;
+}
+
+/* Description */
+
+.descripcionGenerico {
+  font-family: 'Montserrat', sans-serif;
+}
+
+.descripcionPasteleria {
+  font-family: 'Playfair Display', serif;
+}
+
+.descripcionCafeteria {
+  font-family: 'Montserrat', sans-serif;
+}
+
+/* Comentarios */
+
+.comentariosGenerico {
+  font-family: 'Montserrat', sans-serif;
+}
+
+.comentariosPasteleria {
+  font-family: 'Playfair Display', serif;
+}
+
+.comentariosCafeteria {
+  font-family: 'Montserrat', sans-serif;
+}
+
+/* Price */
+
+.precioGenerico {
+  bottom: -70px;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.precioPasteleria {
+  bottom: -70px;
+  font-family: 'Playfair Display', serif;
+}
+
+.precioCafeteria {
+  bottom: -70px;
+  font-family: 'Montserrat', sans-serif;
+}
+
+/* Para 800px */  
+@media only screen and (max-width: 1600px) and (min-width: 1000px) {  
+
+  .imagen {
+    width: 400px;
+    height: 400px;
+  }
+
+}

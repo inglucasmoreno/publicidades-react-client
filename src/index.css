@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* * {
+  font-family: 'Barlow', sans-serif;
+  font-family: 'Handlee', cursive;
+  font-family: 'Montserrat', sans-serif;
+  font-family: 'Nunito', sans-serif;
+} */
+
+input {
+  outline: none;
+}
