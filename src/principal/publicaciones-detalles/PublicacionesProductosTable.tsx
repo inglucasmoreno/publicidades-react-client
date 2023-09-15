@@ -7,7 +7,6 @@ import { DeleteIcon, DislikeIcon, EditIcon, LikeIcon, MenuIcon } from "../../ico
 import { ActiveItems } from "../../constants";
 import { useParams } from "react-router-dom";
 
-
 export const PublicacionesProductosTable = () => {
 
   const {
@@ -214,7 +213,7 @@ export const PublicacionesProductosTable = () => {
 
       case "imagen":
         return (
-          <img className="w-20 h-20" src={`http://localhost:3000/${urlImagenes}/${row.imagen.url}`} />
+          <img className="w-20 h-20" src={`${import.meta.env.VITE_API_URL}${urlImagenes}/${row.imagen.url}`} />
         );
 
       case "producto.descripcion":

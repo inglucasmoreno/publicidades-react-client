@@ -152,7 +152,7 @@ export const ImagenesTable = () => {
 
       case "imagen":
         return (
-          <img className="w-20 h-20" src={`http://localhost:3000/${urlImagenes}/${row.url}`} />
+          <img className="w-20 h-20" src={`${import.meta.env.VITE_API_URL}${urlImagenes}/${row.url}`} />
         );
 
       case "activo":

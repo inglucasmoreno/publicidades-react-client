@@ -1,4 +1,4 @@
-import { Button, Input, Modal, ModalBody, ModalContent, ModalHeader, Spinner, Switch } from "@nextui-org/react"
+import { Button, Input, Modal, ModalBody, ModalContent, ModalHeader, Spinner } from "@nextui-org/react"
 import { useUiStore } from '../../hooks/useUiStore';
 import { useForm } from "react-hook-form";
 import { useEffect, useState } from "react";
@@ -164,7 +164,7 @@ export const PublicacionesProductosModal = () => {
         {
           activePublicidadProducto.id !== 0 && !imageSelected &&
           <div className="w-1/2 mx-auto mt-4">
-            <img className="shadow-lg border-2 border-gray-400" src={`http://localhost:3000/${urlImagenes}/${activePublicidadProducto?.imagen.url}`} alt="Imagen de producto" />
+            <img className="shadow-lg border-2 border-gray-400" src={`${import.meta.env.VITE_API_URL}${urlImagenes}/${activePublicidadProducto?.imagen.url}`} alt="Imagen de producto" />
           </div>
         }
 
@@ -250,7 +250,7 @@ export const PublicacionesProductosModal = () => {
 
                 {
                   filteredImages.map(imagen => (
-                    <img key={imagen.id} onClick={() => selectImage(imagen)} className="w-20 h-20 mr-2 mt-2 rounded sepia hover:sepia-0 cursor-pointer grayscale-1" src={`http://localhost:3000/${urlImagenes}/${imagen.url}`} alt={imagen.descripcion} />
+                    <img key={imagen.id} onClick={() => selectImage(imagen)} className="w-20 h-20 mr-2 mt-2 rounded sepia hover:sepia-0 cursor-pointer grayscale-1" src={`${import.meta.env.VITE_API_URL}${urlImagenes}/${imagen.url}`} alt={imagen.descripcion} />
                   ))
                 }
               </div>

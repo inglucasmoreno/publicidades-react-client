@@ -143,7 +143,7 @@ export const ReproduccionesPage = () => {
                       'border-5 object-cover rounded-full imagen border-pink-700 shadow-2xl' :
                       'border-5 object-cover rounded-full imagen border-zinc-800 shadow-2xl'
                 }
-                  src={`http://localhost:3000/${urlImagenes}/${publicidadesProductos[contador]?.imagen.url}`} alt="Imagen" />
+                  src={`${import.meta.env.VITE_API_URL}${urlImagenes}/${publicidadesProductos[contador]?.imagen.url}`} alt="Imagen" />
 
                 <div ref={descripcionRef} className="text-center flex flex-col items-center justify-center ml-32 text-pink-700">
 

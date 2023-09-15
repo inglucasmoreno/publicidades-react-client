@@ -43,7 +43,7 @@ export const CartaPage = () => {
         <h2 className="text-zinc-400 text-center mt-4"> CONFIGURACIONES </h2>
       </div>
       <div className="mt-7">
-        <a className="text-white bg-secondary py-2 px-4 rounded-lg flex items-center" href="http://localhost:3000/pdf/VeneziaPanaderia.pdf" target="_blank">
+        <a className="text-white bg-secondary py-2 px-4 rounded-lg flex items-center" href={`${import.meta.env.VITE_API_URL}pdf/VeneziaPanaderia.pdf`} target="_blank">
           <BookIcon />
           <span className="ml-2"> Ver carta actual </span>
         </a>
