@@ -28,6 +28,12 @@
   background-color: #000000;
 }
 
+.imagen-generico {
+  max-width: 450px;
+  /* bottom: -10px; */
+  /* rotate: 30; */
+}
+
 .imagen {
   width: 600px;
   height: 600px;
@@ -42,7 +48,8 @@
 }
 
 .descripcionPasteleria {
-  font-family: 'Playfair Display', serif;
+  /* font-family: 'Playfair Display', serif; */
+  font-family: 'Dancing Script', cursive;
 }
 
 .descripcionCafeteria {
@@ -56,7 +63,7 @@
 }
 
 .comentariosPasteleria {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .comentariosCafeteria {
@@ -72,12 +79,47 @@
 
 .precioPasteleria {
   bottom: -70px;
-  font-family: 'Playfair Display', serif;
+  font-family: 'Dancing Script', cursive;
 }
 
 .precioCafeteria {
   bottom: -70px;
   font-family: 'Montserrat', sans-serif;
+}
+
+.frase1 {
+  top: -100px;
+  width: 1000px;
+}
+
+.frase2 {
+  top: -100px;
+  width: 1000px;
+  left: -250px;
+}
+
+.frase3 {
+  top: -100px;
+  width: 1000px;
+  right: -300px;
+}
+
+.frase4 {
+  top: -200px;
+  width: 1000px;
+  right: -300px;
+}
+
+.frase5 {
+  top: -200px;
+  width: 1000px;
+  left: 100px;
+}
+
+.frase6 {
+  top: -150px;
+  width: 1000px;
+  left: -100px;
 }
 
 /* Para 800px */  

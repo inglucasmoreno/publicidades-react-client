@@ -39,9 +39,14 @@ export const LoginPage = () => {
         <form onSubmit={onSubmit}>
 
           <CardHeader>
-            <h1 className="text-xl font-semibold text-center w-full">
-              Ingresar al sistema
-            </h1>
+            <div className='text-center w-full flex flex-col items-center justify-center'>
+              <h1 className="text-xl font-semibold text-center w-full">
+                SISTEMA DE PUBLICIDADES
+              </h1>
+              <h2>
+                Ingreso al sistema
+              </h2>
+            </div>
           </CardHeader>
 
           {/* <h1 className="text-center text-2xl mb-2 text-slate-800"></h1> */}
@@ -52,7 +57,7 @@ export const LoginPage = () => {
             type="text"
             {...register("username")}
             validationState={errors.username ? 'invalid' : 'valid'}
-            errorMessage={ errors?.username?.message }
+            errorMessage={errors?.username?.message}
             variant="bordered"
             label="Usuario"
           />
@@ -63,35 +68,16 @@ export const LoginPage = () => {
             {...register("password")}
             type="password"
             validationState={errors.password ? 'invalid' : 'valid'}
-            errorMessage={ errors?.password?.message }
+            errorMessage={errors?.password?.message}
             variant="bordered"
             label="Contraseña"
           />
-
-
-          {/* <input
-            className={!errors.username ? 'w-full px-4 py-3 border border-gray-400 mt-4' : 'w-full px-4 py-3 border-2 border-red-500 mt-4'}
-            type="text"
-            placeholder='Usuario' />
-          {errors.username && <p className="text-xs mt-1 text-red-500"> * {errors?.username?.message} </p>}
-
-          <input
-            className={!errors.password ? 'w-full px-4 py-3 border border-gray-400 mt-4' : 'w-full px-4 py-3 border-2 border-red-500 mt-4'}
-            type="password"
-            placeholder='Contraseña' />
-          {errors.password && <p className="text-xs mt-1 text-red-500"> * {errors?.password?.message} </p>} */}
 
           {
 
             !isLoading
 
               ?
-
-              // <button
-              //   type="submit"
-              //   className="p-2 w-full mt-4 rounded bg-secondary text-white shadow-lg">
-              //   Ingresar
-              // </button>
 
               <Button type="submit" className='w-full mt-4' color="secondary">
                 Ingresar

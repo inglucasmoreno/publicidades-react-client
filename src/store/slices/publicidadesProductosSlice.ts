@@ -11,6 +11,8 @@ export const publicidadesProductosSlice = createSlice({
       tipo: 'Generico',
       peso: 100,
       destacado: 'false',
+      sinFondo: 'false',
+      frase: '',
       comentarios: '',
       publicidadId: 0,
       productoId: null,

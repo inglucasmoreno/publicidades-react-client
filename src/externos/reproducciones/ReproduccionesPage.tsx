@@ -17,6 +17,12 @@ export const ReproduccionesPage = () => {
   let donutRef = useRef(null);
   let cupcakeRef = useRef(null);
   let logoVeneziaRef = useRef(null);
+  let frase1Ref = useRef(null);
+  let frase2Ref = useRef(null);
+  let frase3Ref = useRef(null);
+  let frase4Ref = useRef(null);
+  let frase5Ref = useRef(null);
+  let frase6Ref = useRef(null);
 
   const [contador, setContador] = useState(0);
 
@@ -87,6 +93,19 @@ export const ReproduccionesPage = () => {
     const descripcionProducto = descripcionRef.current;
     const divImagen = imagenRef.current;
     const divPrecio = precioRef.current;
+    const divFrase1 = frase1Ref.current;
+    const divFrase2 = frase2Ref.current;
+    const divFrase3 = frase3Ref.current;
+    const divFrase4 = frase4Ref.current;
+    const divFrase5 = frase5Ref.current;
+    const divFrase6 = frase6Ref.current;
+
+    gsap.from(divFrase1, { delay: 1, y: 50, duration: 0.5, opacity: 0, ease:"elastic" });
+    gsap.from(divFrase2, { delay: 1, y: 50, duration: 0.5, opacity: 0, ease:"elastic" });
+    gsap.from(divFrase3, { delay: 1, y: 50, duration: 0.5, opacity: 0, ease:"elastic" });
+    gsap.from(divFrase4, { delay: 1, y: 50, duration: 0.5, opacity: 0, ease:"elastic" });
+    gsap.from(divFrase5, { delay: 1, y: 50, duration: 0.5, opacity: 0, ease:"elastic" });
+    gsap.from(divFrase6, { delay: 1, y: 50, duration: 0.5, opacity: 0, ease:"elastic" });
 
     if (publicidadesProductos[contador]?.tipo === 'Generico') {
       gsap.from(descripcionProducto, { x: 100, opacity: 0, duration: 1, ease: "sine" });
@@ -130,22 +149,55 @@ export const ReproduccionesPage = () => {
                   "body-cafeteria"
             }>
 
-            <img ref={logoVeneziaRef} src="/assets/venezia.png" className="w-40 md:w-80 fixed right-14 top-14" alt="Venezia" />
+            <img ref={logoVeneziaRef} src={
+              publicidadesProductos[contador].tipo === 'Pasteleria' || publicidadesProductos[contador].tipo === 'Generico' ?
+                "/assets/venezia.png" :
+                "/assets/venezia-blanco.png"
+            } className="w-40 md:w-80 xl:w-72 fixed right-14 top-14" alt="Venezia" />
 
-            <div className="flex items-center w-full">
+            <div className="flex items-center pt-16 w-full">
 
-              <div className="w-full flex pl-40 mt-36 items-center">
+              <div className={
+                publicidadesProductos[contador]?.tipo === 'Generico' ?
+                  'w-full flex justify-center mt-60 items-center' :
+                  'w-full flex pl-40 mt-48 items-center'
+              }>
 
-                <img ref={imagenRef} className={
-                  publicidadesProductos[contador]?.tipo === 'Generico' ?
-                    'border-5 object-cover rounded-xl imagen border-zinc-800 shadow-2xl' :
-                    publicidadesProductos[contador]?.tipo === 'Pasteleria' ?
-                      'border-5 object-cover rounded-full imagen border-pink-700 shadow-2xl' :
-                      'border-5 object-cover rounded-full imagen border-zinc-800 shadow-2xl'
-                }
-                  src={`${import.meta.env.VITE_API_URL}${urlImagenes}/${publicidadesProductos[contador]?.imagen.url}`} alt="Imagen" />
+                <div className="relative">
+                  
+                  {/* Frases */}
+                  <img ref={frase1Ref} className={
+                    publicidadesProductos[contador].frase === 'frase_1' ? "absolute frase1" : 'hidden frase1'
+                  } src="/assets/frases/frase_1.png" alt="frase1" />
+                  <img ref={frase2Ref} className={
+                    publicidadesProductos[contador].frase === 'frase_2' ? "absolute frase2" : 'hidden frase2'
+                  } src="/assets/frases/frase_2.png" alt="frase2" />
+                  <img ref={frase3Ref} className={
+                    publicidadesProductos[contador].frase === 'frase_3' ? "absolute frase3" : 'hidden frase3'
+                  } src="/assets/frases/frase_3.png" alt="frase3" />
+                  <img ref={frase4Ref} className={
+                    publicidadesProductos[contador].frase === 'frase_4' ? "absolute frase4" : 'hidden frase4'
+                  } src="/assets/frases/frase_4.png" alt="frase4" />
+                  <img ref={frase5Ref} className={
+                    publicidadesProductos[contador].frase === 'frase_5' ? "absolute frase5" : 'hidden frase5'
+                  } src="/assets/frases/frase_5.png" alt="frase5" />
+                  <img ref={frase6Ref} className={
+                    publicidadesProductos[contador].frase === 'frase_6' ? "absolute frase6" : 'hidden frase6'
+                  } src="/assets/frases/frase_6.png" alt="frase6" />
 
-                <div ref={descripcionRef} className="text-center flex flex-col items-center justify-center ml-32 text-pink-700">
+                  <img ref={imagenRef} className={
+                    publicidadesProductos[contador]?.tipo === 'Generico' && !publicidadesProductos[contador]?.sinFondo ?
+                      'border-5 object-cover min-w-2xl rounded-full imagen border-red-700 shadow-2xl' :
+                      publicidadesProductos[contador]?.tipo === 'Pasteleria' && !publicidadesProductos[contador]?.sinFondo ?
+                        'border-5 object-cover rounded-full imagen border-pink-700 shadow-2xl' :
+                        publicidadesProductos[contador]?.tipo === 'Cafeteria' && !publicidadesProductos[contador]?.sinFondo ?
+                          'border-5 object-cover rounded-full imagen border-zinc-800 shadow-2xl' :
+                          'imagen-generico'
+                  }
+                    src={`${import.meta.env.VITE_API_URL}${urlImagenes}/${publicidadesProductos[contador]?.imagen.url}`} alt="Imagen" />
+                </div>
+
+                <div ref={descripcionRef} className="text-center flex flex-col items-center justify-center ml-32 mt-4 text-pink-700">
 
                   <div
                     className={
@@ -160,9 +212,9 @@ export const ReproduccionesPage = () => {
                   <p
                     className={
                       publicidadesProductos[contador]?.tipo === 'Generico' ?
-                        'text-6xl descripcionGenerico text-white' :
+                        'text-7xl descripcionGenerico text-black mt-20 font-semibold' :
                         publicidadesProductos[contador]?.tipo === 'Pasteleria' ?
-                          'text-6xl descripcionPasteleria text-pink-700' :
+                          'text-7xl descripcionPasteleria text-pink-700' :
                           'text-6xl descripcionCafeteria text-zinc-200'
                     }>
                     {publicidadesProductos[contador]?.producto?.descripcion}
@@ -173,9 +225,9 @@ export const ReproduccionesPage = () => {
                   <p
                     className={
                       publicidadesProductos[contador]?.tipo === 'Generico' ?
-                        'text-3xl comentariosGenerico mt-4 text-white' :
+                        'text-3xl comentariosGenerico mt-4 font-semibold text-gray-600' :
                         publicidadesProductos[contador]?.tipo === 'Pasteleria' ?
-                          'text-3xl comentariosPasteleria mt-4 text-pink-700' :
+                          'text-3xl comentariosPasteleria font-semibold mt-4 text-pink-700' :
                           'text-3xl comentariosCafeteria mt-4 text-white'
                     }>
                     {publicidadesProductos[contador]?.comentarios}
@@ -185,7 +237,7 @@ export const ReproduccionesPage = () => {
 
                   <p className={
                     publicidadesProductos[contador]?.tipo === 'Generico' ?
-                      'text-6xl text-white precioGenerico w-max p-4 border-t-4 mt-10' :
+                      'text-6xl text-black precioGenerico w-max p-4 border-t-4 border-black mt-10' :
                       publicidadesProductos[contador]?.tipo === 'Pasteleria' ?
                         'text-6xl precioPasteleria w-max bg-white p-4 shadow-xl border-4 border-pink-700 text-black mt-10' :
                         'text-6xl text-white precioCafeteria w-max p-4 border-t-4 mt-10'
@@ -201,7 +253,7 @@ export const ReproduccionesPage = () => {
           </div>
 
           : isLoadingPublicidadesProductos ?
-            
+
             <div className="w-full h-screen flex items-center bg-zinc-900 justify-center">
               <div className="text-3xl">
                 <img className="w-1/2 mx-auto" src="/assets/logo.png" alt="logo.png" />
@@ -212,9 +264,9 @@ export const ReproduccionesPage = () => {
                 </p>
               </div>
             </div>
-            
+
             :
-            
+
             <div className="w-full h-screen flex items-center bg-zinc-900 justify-center">
               <div className="text-3xl">
                 <img className="w-1/2 mx-auto" src="/assets/logo.png" alt="logo.png" />

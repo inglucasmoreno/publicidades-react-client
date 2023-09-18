@@ -8,6 +8,7 @@ import { useImagenesStore, useProductosStore, usePublicidadesStore } from "../..
 import { DeleteIcon, ImageIcon } from "../../icons";
 import { BackIcon } from "../../icons/BackIcon";
 import { TiposProductos } from "../../constants";
+import { FrasesItems } from "../../constants/FrasesItems";
 
 export const PublicacionesProductosModal = () => {
 
@@ -50,6 +51,8 @@ export const PublicacionesProductosModal = () => {
       peso: Number(data.peso),
       comentarios: data.comentarios,
       destacado: data.destacado === 'true' ? true : false,
+      sinFondo: data.sinFondo === 'true' ? true : false,
+      frase: data.frase,
       productoId: Number(data.productoId),
       publicidadId: activePublicidad.id
     }
@@ -135,6 +138,29 @@ export const PublicacionesProductosModal = () => {
         >
           <option value="false"> Producto sin destacar </option>
           <option value="true"> Producto destacado </option>
+        </select>
+
+        <select
+          defaultValue={activePublicidadProducto.id !== 0 ? activePublicidadProducto.sinFondo : "false"}
+          className="border-2 w-full cursor-pointer dark:border-zinc-700 dark:bg-zinc-900 p-3 mt-4 rounded-lg"
+          {...register('sinFondo', {
+            required: { value: true, message: 'El campo es obligatorio' }
+          })}
+        >
+          <option value="false"> Producto con fondo </option>
+          <option value="true"> Producto sin fondo </option>
+        </select>
+
+        <select
+          defaultValue={activePublicidadProducto.id !== 0 ? activePublicidadProducto.frase : ""}
+          className="border-2 w-full cursor-pointer dark:border-zinc-700 dark:bg-zinc-900 p-3 mt-4 rounded-lg"
+          {...register('frase')}
+        >
+          {
+            FrasesItems.map(frase => (
+              <option key={frase.key} value={frase.key}> {frase.value} </option>
+            ))
+          }
         </select>
 
         <Input
@@ -264,7 +290,7 @@ export const PublicacionesProductosModal = () => {
 
 
   return (
-    <Modal isDismissable={false} isOpen={isPublicidadProductoOpen} onOpenChange={() => togglePublicidadProducto()}>
+    <Modal isDismissable={false} scrollBehavior="inside" isOpen={isPublicidadProductoOpen} onOpenChange={() => togglePublicidadProducto()}>
       <ModalContent>
         <>
           <ModalHeader className="flex items-center gap-1">
