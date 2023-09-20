@@ -160,7 +160,7 @@ export const ReproduccionesPage = () => {
               <div className={
                 publicidadesProductos[contador]?.tipo === 'Generico' ?
                   'w-full flex justify-center mt-60 items-center' :
-                  'w-full flex pl-40 mt-48 items-center'
+                  'w-full flex pl-40 mt-32 items-center'
               }>
 
                 <div className="relative">
@@ -212,7 +212,7 @@ export const ReproduccionesPage = () => {
                   <p
                     className={
                       publicidadesProductos[contador]?.tipo === 'Generico' ?
-                        'text-7xl descripcionGenerico text-black mt-20 font-semibold' :
+                        'text-7xl descripcionGenerico text-black font-semibold' :
                         publicidadesProductos[contador]?.tipo === 'Pasteleria' ?
                           'text-7xl descripcionPasteleria text-pink-700' :
                           'text-6xl descripcionCafeteria text-zinc-200'
