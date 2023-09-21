@@ -29,7 +29,7 @@
 }
 
 .imagen-generico {
-  max-width: 450px;
+  max-width: 550px;
   /* bottom: -10px; */
   /* rotate: 30; */
 }
@@ -60,6 +60,7 @@
 
 .comentariosGenerico {
   font-family: 'Montserrat', sans-serif;
+  max-width: 600px;
 }
 
 .comentariosPasteleria {
@@ -87,37 +88,43 @@
   font-family: 'Montserrat', sans-serif;
 }
 
-.frase1 {
+/* No te lo podes perder */
+.frase1 { 
   top: -100px;
   width: 1000px;
 }
 
+/* Pura dulzura */
 .frase2 {
   top: -100px;
   width: 1000px;
   left: -250px;
 }
 
+/* Compartilo con amigos */
 .frase3 {
   top: -100px;
   width: 1000px;
   right: -300px;
 }
 
+/* Comenza con energia */
 .frase4 {
   top: -200px;
   width: 1000px;
   right: -300px;
 }
 
+/* Una delicia */
 .frase5 {
   top: -200px;
   width: 1000px;
   left: 100px;
 }
 
+/* El sabor de lo natural */
 .frase6 {
-  top: -150px;
+  top: -180px;
   width: 1000px;
   left: -100px;
 }

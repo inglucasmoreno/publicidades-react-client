@@ -1,4 +1,4 @@
-import { Button, Input, Modal, ModalBody, ModalContent, ModalHeader, Spinner } from "@nextui-org/react"
+import { Button, Input, Modal, ModalBody, ModalContent, ModalHeader, Spinner, Textarea } from "@nextui-org/react"
 import { useUiStore } from '../../hooks/useUiStore';
 import { useForm } from "react-hook-form";
 import { useEffect, useState } from "react";
@@ -177,7 +177,7 @@ export const PublicacionesProductosModal = () => {
           })}
         />
 
-        <Input
+        {/* <Input
           type="text"
           className="mt-4"
           variant="bordered"
@@ -185,7 +185,19 @@ export const PublicacionesProductosModal = () => {
           label="Comentarios"
           placeholder="Ej. Excelente producto"
           {...register('comentarios')}
-        />
+        /> */}
+
+        <Textarea
+          type="text"
+          className="mt-4"
+          variant="bordered"
+          defaultValue={activePublicidadProducto.id === 0 ? '' : activePublicidadProducto.comentarios}
+          label="Comentarios"
+          placeholder="Ej. Excelente producto"
+          {...register('comentarios')}
+        >
+
+        </Textarea>
 
         {
           activePublicidadProducto.id !== 0 && !imageSelected &&
