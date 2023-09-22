@@ -34,12 +34,12 @@ export const useImagenesStore = () => {
     dispatch(onSetActiveImagen(imagen));
   }
 
-  const getAllImagenes = async () => {
+  const getAllImagenes = async (params: any = {}) => {
 
     dispatch(onStartLoadingImagenes());
 
     try {
-      const { data } = await backendApi.get('imagenes');
+      const { data } = await backendApi.get('imagenes',{ params });
       dispatch(onGetAllImagenes(data.imagenes));
     } catch (error) {
       const errorMessage = error.response.data.message;

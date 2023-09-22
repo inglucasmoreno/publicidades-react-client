@@ -24,9 +24,7 @@ export const ReproduccionesPage = () => {
   let frase5Ref = useRef(null);
   let frase6Ref = useRef(null);
 
-
   const [contador, setContador] = useState(0);
-  const [imageSrc, setImageSrc] = useState('');
 
   const {
     getPublicidad,
@@ -40,25 +38,13 @@ export const ReproduccionesPage = () => {
 
   const { idPublicidad } = useParams();
 
-  const localStorageReset = () => {
-    const keys = Object.keys(localStorage);
-    for (const key of keys) {
-      if (key.startsWith("http")) {
-        localStorage.removeItem(key);
-      }
-    }
-  }
-
   useEffect(() => {
-    localStorageReset();
     getPublicidad(Number(idPublicidad));
     getAllPublicidadesProductos({ publicidad: idPublicidad, activo: true });
   }, [])
 
   useEffect(() => {
     if (publicidadesProductos.length !== 0) {
-
-      loadImage(publicidadesProductos[0].imagen.url);
 
       // Animation svg
       const donut = donutRef.current;
@@ -114,12 +100,12 @@ export const ReproduccionesPage = () => {
     const divFrase5 = frase5Ref.current;
     const divFrase6 = frase6Ref.current;
 
-    gsap.from(divFrase1, { delay: 1, y: 50, duration: 0.5, opacity: 0, ease: "elastic" });
-    gsap.from(divFrase2, { delay: 1, y: 50, duration: 0.5, opacity: 0, ease: "elastic" });
-    gsap.from(divFrase3, { delay: 1, y: 50, duration: 0.5, opacity: 0, ease: "elastic" });
-    gsap.from(divFrase4, { delay: 1, y: 50, duration: 0.5, opacity: 0, ease: "elastic" });
-    gsap.from(divFrase5, { delay: 1, y: 50, duration: 0.5, opacity: 0, ease: "elastic" });
-    gsap.from(divFrase6, { delay: 1, y: 50, duration: 0.5, opacity: 0, ease: "elastic" });
+    gsap.from(divFrase1, { delay: 1, y: 50, duration: 0.5, opacity: 0, ease:"elastic" });
+    gsap.from(divFrase2, { delay: 1, y: 50, duration: 0.5, opacity: 0, ease:"elastic" });
+    gsap.from(divFrase3, { delay: 1, y: 50, duration: 0.5, opacity: 0, ease:"elastic" });
+    gsap.from(divFrase4, { delay: 1, y: 50, duration: 0.5, opacity: 0, ease:"elastic" });
+    gsap.from(divFrase5, { delay: 1, y: 50, duration: 0.5, opacity: 0, ease:"elastic" });
+    gsap.from(divFrase6, { delay: 1, y: 50, duration: 0.5, opacity: 0, ease:"elastic" });
 
     if (publicidadesProductos[contador]?.tipo === 'Generico') {
       gsap.from(descripcionProducto, { x: 100, opacity: 0, duration: 1, ease: "sine" });
@@ -140,33 +126,11 @@ export const ReproduccionesPage = () => {
   const changeProduct = () => {
     setContador((prev) => {
       if (prev + 1 === publicidadesProductos.length) {
-        const proximo = 0;
-        loadImage(publicidadesProductos[proximo].imagen.url);
         return 0;
       } else {
-        const proximo = prev + 1;
-        loadImage(publicidadesProductos[proximo].imagen.url);
-        return proximo;
+        return prev + 1
       }
     });
-  }
-
-  const loadImage = async (urlImage) => {
-
-    const url = `${import.meta.env.VITE_API_URL}${urlImagenes}/${urlImage}`;
-    const cachedImage = localStorage.getItem(url);
-
-    if (cachedImage) {
-      setImageSrc(cachedImage);
-      return;
-    } else {
-      const response = await fetch(url);
-      const blob = await response.blob();
-      const objectURL = URL.createObjectURL(blob);
-      setImageSrc(objectURL);
-      localStorage.setItem(url, objectURL);
-    }
-
   }
 
   return (
@@ -183,7 +147,7 @@ export const ReproduccionesPage = () => {
                   "body-pasteleria" :
                   "body-cafeteria"
             }>
-
+            
             <img ref={logoVeneziaRef} src={
               publicidadesProductos[contador].tipo === 'Pasteleria' || publicidadesProductos[contador].tipo === 'Generico' ?
                 "/assets/venezia.png" :
@@ -199,7 +163,7 @@ export const ReproduccionesPage = () => {
               }>
 
                 <div className="relative">
-
+                  
                   {/* Frases */}
                   <img ref={frase1Ref} className={
                     publicidadesProductos[contador].frase === 'frase_1' ? "absolute frase1" : 'hidden frase1'
@@ -220,7 +184,7 @@ export const ReproduccionesPage = () => {
                     publicidadesProductos[contador].frase === 'frase_6' ? "absolute frase6" : 'hidden frase6'
                   } src="/assets/frases/frase_6.png" alt="frase6" />
 
-                  <img ref={imagenRef} className={
+                  <img loading="lazy" ref={imagenRef} className={
                     publicidadesProductos[contador]?.tipo === 'Generico' && !publicidadesProductos[contador]?.sinFondo ?
                       'border-5 object-cover min-w-2xl rounded-full imagen border-red-700 shadow-2xl' :
                       publicidadesProductos[contador]?.tipo === 'Pasteleria' && !publicidadesProductos[contador]?.sinFondo ?
@@ -229,7 +193,7 @@ export const ReproduccionesPage = () => {
                           'border-5 object-cover rounded-full imagen border-zinc-800 shadow-2xl' :
                           'imagen-generico'
                   }
-                    src={imageSrc} alt="Imagen" />
+                    src={`${import.meta.env.VITE_API_URL}${urlImagenes}/${publicidadesProductos[contador]?.imagen.url}`} alt="Imagen" />
                 </div>
 
                 <div ref={descripcionRef} className="text-center flex flex-col items-center justify-center ml-32 mt-4 text-pink-700">

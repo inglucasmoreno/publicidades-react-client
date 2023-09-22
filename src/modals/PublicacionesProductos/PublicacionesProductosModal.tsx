@@ -29,13 +29,13 @@ export const PublicacionesProductosModal = () => {
       changeSection('Producto');
       setImageSelected(null);
       setErrorForm(null);
-      getAllProductos();
+      getAllProductos({activo: true});
       reset();
     }
   }, [isPublicidadProductoOpen])
 
   useEffect(() => {
-    if (sectionShow === 'Imagenes') getAllImagenes();
+    if (sectionShow === 'Imagenes') getAllImagenes({ activo: true });
     setErrorForm(null);
   }, [sectionShow])
 

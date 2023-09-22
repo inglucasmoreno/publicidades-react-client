@@ -45,9 +45,9 @@ export const Navbar = () => {
             className="sm:hidden"
           />
           <NavbarBrand>
-            <p className="font-bold text-inherit">
+            <Link onPress={() => navigate('/')} className="font-bold text-inherit cursor-pointer" color="foreground">
               EQUINOCCIO
-            </p>
+            </Link>
           </NavbarBrand>
         </NavbarContent>
 

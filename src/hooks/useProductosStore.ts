@@ -33,12 +33,12 @@ export const useProductosStore = () => {
     dispatch(onSetActiveProducto(producto));
   }
 
-  const getAllProductos = async () => {
+  const getAllProductos = async (params: any = {}) => {
 
     dispatch(onStartLoadingProductos());
 
     try {
-      const { data } = await backendApi.get('productos');
+      const { data } = await backendApi.get('productos', { params });
       dispatch(onGetAllProductos(data.productos));
     } catch (error) {
       const errorMessage = error.response.data.message;
