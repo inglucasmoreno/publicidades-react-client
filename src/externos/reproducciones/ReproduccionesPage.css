@@ -29,7 +29,7 @@
 }
 
 .imagen-generico {
-  max-width: 550px;
+  max-width: 800px;
   /* bottom: -10px; */
   /* rotate: 30; */
 }
@@ -44,7 +44,7 @@
 /* Description */
 
 .descripcionGenerico {
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Nunito', sans-serif;
 }
 
 .descripcionPasteleria {
@@ -60,24 +60,24 @@
 
 .comentariosGenerico {
   font-family: 'Montserrat', sans-serif;
-  max-width: 700px;
+  max-width: 800px;
 }
 
 .comentariosPasteleria {
   font-family: 'Montserrat', sans-serif;
-  max-width: 700px;
+  max-width: 800px;
 }
 
 .comentariosCafeteria {
   font-family: 'Montserrat', sans-serif;
-  max-width: 700px;
+  max-width: 800px;
 }
 
 /* Price */
 
 .precioGenerico {
   bottom: -70px;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Nunito', sans-serif;
 }
 
 .precioPasteleria {
@@ -91,44 +91,9 @@
 }
 
 /* No te lo podes perder */
-.frase1 { 
-  top: -100px;
+.frase { 
+  top: -150px;
   width: 1000px;
-}
-
-/* Pura dulzura */
-.frase2 {
-  top: -100px;
-  width: 3000px;
-  left: -250px;
-}
-
-/* Compartilo con amigos */
-.frase3 {
-  top: -100px;
-  width: 1000px;
-  right: -300px;
-}
-
-/* Comenza con energia */
-.frase4 {
-  top: -200px;
-  width: 1000px;
-  right: -300px;
-}
-
-/* Una delicia */
-.frase5 {
-  top: -200px;
-  width: 1000px;
-  left: 100px;
-}
-
-/* El sabor de lo natural */
-.frase6 {
-  top: -180px;
-  width: 1000px;
-  left: -100px;
 }
 
 /* Para 800px */  

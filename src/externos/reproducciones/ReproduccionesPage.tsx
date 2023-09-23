@@ -23,10 +23,11 @@ export const ReproduccionesPage = () => {
   let frase4Ref = useRef(null);
   let frase5Ref = useRef(null);
   let frase6Ref = useRef(null);
-
+  let frase7Ref = useRef(null);
 
   const [contador, setContador] = useState(0);
   const [imageSrc, setImageSrc] = useState('');
+  const [comentarios, setComentarios] = useState([]);
 
   const {
     getPublicidad,
@@ -59,6 +60,8 @@ export const ReproduccionesPage = () => {
     if (publicidadesProductos.length !== 0) {
 
       loadImage(publicidadesProductos[0].imagen.url);
+      const comentarioConSaltoTMP = publicidadesProductos[0].comentarios.split('\n');
+      setComentarios(comentarioConSaltoTMP);
 
       // Animation svg
       const donut = donutRef.current;
@@ -113,6 +116,7 @@ export const ReproduccionesPage = () => {
     const divFrase4 = frase4Ref.current;
     const divFrase5 = frase5Ref.current;
     const divFrase6 = frase6Ref.current;
+    const divFrase7 = frase7Ref.current;
 
     gsap.from(divFrase1, { delay: 1, y: 50, duration: 0.5, opacity: 0, ease: "elastic" });
     gsap.from(divFrase2, { delay: 1, y: 50, duration: 0.5, opacity: 0, ease: "elastic" });
@@ -120,6 +124,7 @@ export const ReproduccionesPage = () => {
     gsap.from(divFrase4, { delay: 1, y: 50, duration: 0.5, opacity: 0, ease: "elastic" });
     gsap.from(divFrase5, { delay: 1, y: 50, duration: 0.5, opacity: 0, ease: "elastic" });
     gsap.from(divFrase6, { delay: 1, y: 50, duration: 0.5, opacity: 0, ease: "elastic" });
+    gsap.from(divFrase7, { delay: 1, y: 50, duration: 0.5, opacity: 0, ease: "elastic" });
 
     if (publicidadesProductos[contador]?.tipo === 'Generico') {
       gsap.from(descripcionProducto, { x: 100, opacity: 0, duration: 1, ease: "sine" });
@@ -142,10 +147,14 @@ export const ReproduccionesPage = () => {
       if (prev + 1 === publicidadesProductos.length) {
         const proximo = 0;
         loadImage(publicidadesProductos[proximo].imagen.url);
+        const comentarioConSaltoTMP = publicidadesProductos[proximo].comentarios.split('\n');
+        setComentarios(comentarioConSaltoTMP);
         return 0;
       } else {
         const proximo = prev + 1;
         loadImage(publicidadesProductos[proximo].imagen.url);
+        const comentarioConSalto = publicidadesProductos[proximo].comentarios.split('\n');
+        setComentarios(comentarioConSalto);
         return proximo;
       }
     });
@@ -185,7 +194,7 @@ export const ReproduccionesPage = () => {
             }>
 
             <img ref={logoVeneziaRef} src={
-              publicidadesProductos[contador].tipo === 'Pasteleria' || publicidadesProductos[contador].tipo === 'Generico' ?
+              publicidadesProductos[contador].tipo === 'Pasteleria' ?
                 "/assets/venezia.png" :
                 "/assets/venezia-blanco.png"
             } className="w-40 md:w-80 xl:w-72 fixed right-14 top-14" alt="Venezia" />
@@ -202,23 +211,26 @@ export const ReproduccionesPage = () => {
 
                   {/* Frases */}
                   <img ref={frase1Ref} className={
-                    publicidadesProductos[contador].frase === 'frase_1' ? "absolute frase1" : 'hidden frase1'
+                    publicidadesProductos[contador].frase === 'frase_1' ? "absolute frase" : 'hidden frase'
                   } src="/assets/frases/frase_1.png" alt="frase1" />
                   <img ref={frase2Ref} className={
-                    publicidadesProductos[contador].frase === 'frase_2' ? "absolute frase2" : 'hidden frase2'
+                    publicidadesProductos[contador].frase === 'frase_2' ? "absolute frase" : 'hidden frase'
                   } src="/assets/frases/frase_2.png" alt="frase2" />
                   <img ref={frase3Ref} className={
-                    publicidadesProductos[contador].frase === 'frase_3' ? "absolute frase3" : 'hidden frase3'
+                    publicidadesProductos[contador].frase === 'frase_3' ? "absolute frase" : 'hidden frase'
                   } src="/assets/frases/frase_3.png" alt="frase3" />
                   <img ref={frase4Ref} className={
-                    publicidadesProductos[contador].frase === 'frase_4' ? "absolute frase4" : 'hidden frase4'
+                    publicidadesProductos[contador].frase === 'frase_4' ? "absolute frase" : 'hidden frase'
                   } src="/assets/frases/frase_4.png" alt="frase4" />
                   <img ref={frase5Ref} className={
-                    publicidadesProductos[contador].frase === 'frase_5' ? "absolute frase5" : 'hidden frase5'
+                    publicidadesProductos[contador].frase === 'frase_5' ? "absolute frase" : 'hidden frase'
                   } src="/assets/frases/frase_5.png" alt="frase5" />
                   <img ref={frase6Ref} className={
-                    publicidadesProductos[contador].frase === 'frase_6' ? "absolute frase6" : 'hidden frase6'
+                    publicidadesProductos[contador].frase === 'frase_6' ? "absolute frase" : 'hidden frase'
                   } src="/assets/frases/frase_6.png" alt="frase6" />
+                  <img ref={frase7Ref} className={
+                    publicidadesProductos[contador].frase === 'frase_7' ? "absolute frase" : 'hidden frase'
+                  } src="/assets/frases/frase_7.png" alt="frase7" />
 
                   <img ref={imagenRef} className={
                     publicidadesProductos[contador]?.tipo === 'Generico' && !publicidadesProductos[contador]?.sinFondo ?
@@ -247,10 +259,10 @@ export const ReproduccionesPage = () => {
                   <p
                     className={
                       publicidadesProductos[contador]?.tipo === 'Generico' ?
-                        'text-7xl descripcionGenerico text-black font-semibold' :
+                        'text-7xl descripcionGenerico text-white font-semibold' :
                         publicidadesProductos[contador]?.tipo === 'Pasteleria' ?
                           'text-7xl descripcionPasteleria text-pink-700' :
-                          'text-6xl descripcionCafeteria text-zinc-200'
+                          'text-7xl descripcionCafeteria text-zinc-200'
                     }>
                     {publicidadesProductos[contador]?.producto?.descripcion}
                   </p>
@@ -260,19 +272,44 @@ export const ReproduccionesPage = () => {
                   <p
                     className={
                       publicidadesProductos[contador]?.tipo === 'Generico' ?
-                        'text-3xl comentariosGenerico mt-4 font-semibold text-gray-600' :
+                        'text-4xl comentariosGenerico mt-4 text-white' :
                         publicidadesProductos[contador]?.tipo === 'Pasteleria' ?
-                          'text-3xl comentariosPasteleria font-semibold mt-4 text-pink-700' :
-                          'text-3xl comentariosCafeteria mt-4 text-white'
-                    }>
-                    {publicidadesProductos[contador]?.comentarios}
+                          'text-4xl comentariosPasteleria font-semibold mt-4 text-pink-700' :
+                          'text-4xl comentariosCafeteria mt-4 text-white'
+                    }
+                  >
+                    <div className={comentarios.length <= 1 ? 'text-center' : 'text-left'}>
+                      {
+                        // publicidadesProductos[contador]?.comentarios
+
+                        comentarios.length <= 1 ?
+                          comentarios?.map((comentario, index) => {
+                            return (
+                              <p className="leading-relaxed" key={index}>
+                                {comentario}
+                                <br />
+                              </p>
+                            )
+                          })
+                          :
+                          comentarios?.map((comentario, index) => {
+                            return (
+                              <li className="mt-10" key={index}>
+                                {comentario}
+                                <br />
+                              </li>
+                            )
+                          })
+                      }
+
+                    </div>
                   </p>
 
                   {/* Precio */}
 
                   <p className={
                     publicidadesProductos[contador]?.tipo === 'Generico' ?
-                      'text-6xl text-black precioGenerico w-max p-4 border-t-4 border-black mt-10' :
+                      'text-6xl text-white bg-zinc-900 border-2 border-white precioGenerico w-max p-4 shadow mt-10' :
                       publicidadesProductos[contador]?.tipo === 'Pasteleria' ?
                         'text-6xl precioPasteleria w-max bg-white p-4 shadow-xl border-4 border-pink-700 text-black mt-10' :
                         'text-6xl text-white precioCafeteria w-max p-4 border-t-4 mt-10'
