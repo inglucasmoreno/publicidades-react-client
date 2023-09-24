@@ -199,12 +199,12 @@ export const ReproduccionesPage = () => {
                 "/assets/venezia-blanco.png"
             } className="w-40 md:w-80 xl:w-72 fixed right-14 top-14" alt="Venezia" />
 
-            <div className="flex items-center pt-16 w-full">
+            <div className="flex items-center h-full pt-16 w-full">
 
               <div className={
                 publicidadesProductos[contador]?.tipo === 'Generico' ?
-                  'w-full flex justify-center mt-60 items-center' :
-                  'w-full flex pl-40 mt-32 items-center'
+                  'w-full flex justify-center items-center' :
+                  'w-full flex pl-40 mb-40 items-center'
               }>
 
                 <div className="relative">
