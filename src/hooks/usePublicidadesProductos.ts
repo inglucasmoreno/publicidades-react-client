@@ -102,7 +102,6 @@ export const usePublicidadesProductosStore = () => {
     
     try{
       const { data } = await backendApi.patch(`publicidades-productos/${publicidadProductoData.id}`, publicidadProductoData);
-      console.log(data);
       dispatch(onActiveInactivePublicidadProducto(data.relacion));
       dispatch(onCloseLoading());
       notistack.success('Producto actualizado correctamente');

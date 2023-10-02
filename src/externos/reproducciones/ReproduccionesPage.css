@@ -1,3 +1,94 @@
+/* Actual */
+
+/* Fondo de la publicidad - DINAMICOS */
+
+.fondo0 {
+  margin: 0;
+  padding: 0;
+  background-color: #95CD41;
+  display: flex;
+}
+
+.fondo1 {
+  margin: 0;
+  padding: 0;
+  background-color: #867AE9;
+  display: flex;
+}
+
+.fondo2 {
+  margin: 0;
+  padding: 0;
+  background-color: #F78CA2;
+  display: flex;
+}
+
+.contenido {
+  z-index: 2;
+}
+
+.animate_background {
+  z-index: 1;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+}
+
+@keyframes girarIzquierda {
+  100% {
+    transform: rotate(-360deg);
+    -webkit-transform: rotate(-360deg);
+    -moz-transform: rotate(-360deg);
+    -ms-transform: rotate(-360deg);
+    -o-transform: rotate(-360deg);
+  }
+}
+
+@keyframes girarDerecha {
+  100% {
+    transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+  }
+}
+
+/* Colores de objetos de fondo - DINAMICOS */
+
+.primero {
+  animation: girarDerecha 40s linear infinite;
+  -webkit-animation: girarDerecha 40s linear infinite;
+  transform-origin: 13px 25px;
+}
+
+.segundo {
+  animation: girarIzquierda 20s linear infinite;
+  -webkit-animation: girarIzquierda 20s linear infinite;
+  transform-origin: 13px 25px;
+}
+
+.tercero {
+  animation: girarIzquierda 25s linear infinite;
+  -webkit-animation: girarIzquierda 25s linear infinite;
+  transform-origin: 84px 93px;
+}
+
+.cuarto {
+  animation: girarIzquierda 35s linear infinite;
+  -webkit-animation: girarIzquierda 35s linear infinite;
+  transform-origin: 84px 93px;
+}
+
+/* Antes */
+
+.titulo-producto {
+  font-size: 110px;
+  font-weight: bold;
+}
+
 .body-generico {
   width: 100%;
   height: 100vh;
@@ -43,61 +134,66 @@
 
 /* Description */
 
-.descripcionGenerico {
-  font-family: 'Nunito', sans-serif;
-}
-
-.descripcionPasteleria {
-  /* font-family: 'Playfair Display', serif; */
-  font-family: 'Dancing Script', cursive;
-}
-
-.descripcionCafeteria {
-  font-family: 'Montserrat', sans-serif;
+.descripcion {
+  font-family: 'nunu', cursive;
 }
 
 /* Comentarios */
 
-.comentariosGenerico {
-  font-family: 'Montserrat', sans-serif;
+.comentarios {
+  font-family: 'Delius Unicase', cursive;
   max-width: 800px;
 }
 
-.comentariosPasteleria {
-  font-family: 'Montserrat', sans-serif;
-  max-width: 800px;
-}
+/* Precio */
 
-.comentariosCafeteria {
-  font-family: 'Montserrat', sans-serif;
-  max-width: 800px;
-}
-
-/* Price */
-
-.precioGenerico {
+.precio {
   bottom: -70px;
-  font-family: 'Nunito', sans-serif;
+  font-family: 'Delius Unicase', cursive;
 }
 
-.precioPasteleria {
-  bottom: -70px;
-  font-family: 'Dancing Script', cursive;
+/* Descuento */
+
+.descuento0 {
+  font-family: 'nunu', cursive;
+  background-color: #FB923C;
 }
 
-.precioCafeteria {
-  bottom: -70px;
-  font-family: 'Montserrat', sans-serif;
+.descuento1 {
+  font-family: 'nunu', cursive;
+  background-color: #FFA1F5;
+}
+
+.descuento2 {
+  font-family: 'nunu', cursive;
+  background-color: #3D0C11;
+}
+
+/* Frase */
+
+.frase0 {
+  font-family: 'nunu', cursive;
+  background-color: #FB923C;
+}
+
+.frase1 {
+  font-family: 'nunu', cursive;
+  background-color: #FFA1F5;
+}
+
+.frase2 {
+  font-family: 'nunu', cursive;
+  background-color: #3D0C11;
 }
 
 /* No te lo podes perder */
-.frase { 
+.frase {
   top: -150px;
   width: 1000px;
 }
 
-/* Para 800px */  
-@media only screen and (max-width: 1600px) and (min-width: 1000px) {  
+/* Para 800px */
+@media only screen and (max-width: 1600px) and (min-width: 1000px) {
 
   .imagen {
     width: 400px;

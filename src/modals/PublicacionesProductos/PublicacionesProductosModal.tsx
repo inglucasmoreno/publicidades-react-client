@@ -7,8 +7,6 @@ import { IPublicidadesProductos } from "../../interfaces";
 import { useImagenesStore, useProductosStore, usePublicidadesStore } from "../../hooks";
 import { DeleteIcon, ImageIcon } from "../../icons";
 import { BackIcon } from "../../icons/BackIcon";
-import { TiposProductos } from "../../constants";
-import { FrasesItems } from "../../constants/FrasesItems";
 
 export const PublicacionesProductosModal = () => {
 
@@ -29,7 +27,7 @@ export const PublicacionesProductosModal = () => {
       changeSection('Producto');
       setImageSelected(null);
       setErrorForm(null);
-      getAllProductos({activo: true});
+      getAllProductos({ activo: true });
       reset();
     }
   }, [isPublicidadProductoOpen])
@@ -47,12 +45,11 @@ export const PublicacionesProductosModal = () => {
     }
 
     let sendData: any = {
-      tipo: data.tipo,
       peso: Number(data.peso),
       comentarios: data.comentarios,
-      destacado: data.destacado === 'true' ? true : false,
-      sinFondo: data.sinFondo === 'true' ? true : false,
       frase: data.frase,
+      destacado: data.destacado === 'true' ? true : false,
+      descuento: Number(data.descuento),
       productoId: Number(data.productoId),
       publicidadId: activePublicidad.id
     }
@@ -116,20 +113,6 @@ export const PublicacionesProductosModal = () => {
         }
 
         <select
-          defaultValue={activePublicidadProducto.tipo ? activePublicidadProducto.tipo : 'Generico'}
-          className="border-2 w-full cursor-pointer dark:border-zinc-700 dark:bg-zinc-900 p-3 mt-4 rounded-lg"
-          {...register('tipo', {
-            required: { value: true, message: 'El campo es obligatorio' }
-          })}
-        >
-          {
-            TiposProductos.map(tipo => (
-              <option key={tipo.key} value={tipo.key}> {tipo.value} </option>
-            ))
-          }
-        </select>
-
-        <select
           defaultValue={activePublicidadProducto.id !== 0 ? activePublicidadProducto.destacado : "false"}
           className="border-2 w-full cursor-pointer dark:border-zinc-700 dark:bg-zinc-900 p-3 mt-4 rounded-lg"
           {...register('destacado', {
@@ -138,29 +121,6 @@ export const PublicacionesProductosModal = () => {
         >
           <option value="false"> Producto sin destacar </option>
           <option value="true"> Producto destacado </option>
-        </select>
-
-        <select
-          defaultValue={activePublicidadProducto.id !== 0 ? activePublicidadProducto.sinFondo : "false"}
-          className="border-2 w-full cursor-pointer dark:border-zinc-700 dark:bg-zinc-900 p-3 mt-4 rounded-lg"
-          {...register('sinFondo', {
-            required: { value: true, message: 'El campo es obligatorio' }
-          })}
-        >
-          <option value="false"> Producto con fondo </option>
-          <option value="true"> Producto sin fondo </option>
-        </select>
-
-        <select
-          defaultValue={activePublicidadProducto.id !== 0 ? activePublicidadProducto.frase : ""}
-          className="border-2 w-full cursor-pointer dark:border-zinc-700 dark:bg-zinc-900 p-3 mt-4 rounded-lg"
-          {...register('frase')}
-        >
-          {
-            FrasesItems.map(frase => (
-              <option key={frase.key} value={frase.key}> {frase.value} </option>
-            ))
-          }
         </select>
 
         <Input
@@ -177,23 +137,35 @@ export const PublicacionesProductosModal = () => {
           })}
         />
 
-        {/* <Input
+        <Input
           type="text"
           className="mt-4"
           variant="bordered"
-          defaultValue={activePublicidadProducto.id === 0 ? '' : activePublicidadProducto.comentarios}
-          label="Comentarios"
-          placeholder="Ej. Excelente producto"
-          {...register('comentarios')}
-        /> */}
+          defaultValue={activePublicidadProducto.id === 0 ? "" : String(activePublicidadProducto.frase)}
+          label="Frase"
+          {...register('frase')}
+        />
+
+        <Input
+          type="number"
+          className="mt-4"
+          variant="bordered"
+          validationState={errors.peso ? 'invalid' : 'valid'}
+          defaultValue={activePublicidadProducto.id === 0 ? "0" : String(activePublicidadProducto.descuento)}
+          errorMessage={errors?.peso?.message}
+          label="Descuento"
+          {...register('descuento', {
+            min: { value: 0, message: "Debe ser mayor que 0" }
+          })}
+        />
 
         <Textarea
           type="text"
           className="mt-4"
           variant="bordered"
-          defaultValue={activePublicidadProducto.id === 0 ? '' : activePublicidadProducto.comentarios}
+          defaultValue={activePublicidadProducto.id === 0 ? "" : String(activePublicidadProducto.comentarios)}
           label="Comentarios"
-          placeholder="Ej. Excelente producto"
+          placeholder="Ej. Aqui colocar detalles"
           {...register('comentarios')}
         >
 

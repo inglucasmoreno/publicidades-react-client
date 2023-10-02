@@ -4,12 +4,11 @@ export interface IPublicidadesProductos {
   publicidadId: number,
   productoId: number,
   imagenId: number,
-  tipo: string,
   peso: number,
   destacado: boolean,
-  sinFondo: boolean,
-  frase: string,
+  descuento: number,
   comentarios: string,
+  frase: string,
   imagen?: any,
   activo: boolean
 }
