@@ -173,10 +173,10 @@ export const ReproduccionesPage = () => {
 
               <div className="z-10">
                 <div className="z-30 w-full mt-10 fixed ml-10">
-                  <p ref={descripcionRef} className="text-8xl text-white font-semibold descripcion">
+                  <p ref={descripcionRef} className="text-6xl 2xl:text-8xl text-white font-semibold descripcion">
                     {publicidadesProductos[contador]?.producto?.descripcion}
                   </p>
-                  <p ref={fraseRef} className={ publicidadesProductos[contador]?.frase ? `text-6xl frase${numeroFondo} fixed shadow-xl bottom-0 left-0 p-10 text-white font-semibold descripcion` : ``}>
+                  <p ref={fraseRef} className={ publicidadesProductos[contador]?.frase ? `text-4xl 2xl:text-6xl frase${numeroFondo} fixed shadow-xl bottom-0 left-0 p-10 text-white font-semibold descripcion` : ``}>
                     {publicidadesProductos[contador]?.frase}
                   </p>
                   <div ref={comentariosRef} className={comentarios.length <= 1 ? 'text-left text-white comentarios w-max' : 'text-left text-white comentarios px-20 rounded pb-10 mt-10 pt-1 bg-gray-800 bg-opacity-20 w-max'}>
@@ -195,7 +195,7 @@ export const ReproduccionesPage = () => {
                         comentarios?.map((comentario, index) => {
                           return (
                             <div>
-                              <p className="mt-10 text-xl" key={index}>
+                              <p className="mt-10 text-lg 2xl:text-xl" key={index}>
                                 {comentario}
                                 <br />
                               </p>
@@ -207,15 +207,15 @@ export const ReproduccionesPage = () => {
                   </div>
                 </div>
                 <div className={publicidadesProductos[contador]?.descuento === 0 ? 'hidden' : 'block'}>
-                  <div ref={descuentoRef} className={`right-0 text-white fixed h-96 w-96 flex flex-col items-center justify-center shadow p-2 rounded-full mr-36 mt-32 text-9xl descuento${numeroFondo} font-semibold text-center`}>
+                  <div ref={descuentoRef} className={`right-0 text-white fixed h-80 w-80 2xl:h-96 2xl:w-96 flex flex-col items-center justify-center shadow p-2 rounded-full mr-10 mt-10 2xl:mr-36 2xl:mt-32 text-7xl 2xl:text-9xl descuento${numeroFondo} font-semibold text-center`}>
                     <p className="mt-1"> {publicidadesProductos[contador]?.descuento}% </p>
                     <p> OFF! </p>
                   </div>
                 </div>
                 <div className="flex items-center justify-center mt-10 w-full fixed h-screen">
-                  <img className="z-20 max-w-2xl" ref={imagenRef} src={imageSrc} alt="Imagen" />
+                  <img className="z-20 max-w-xl 2xl:max-w-2xl" ref={imagenRef} src={imageSrc} alt="Imagen" />
                 </div>
-                <div ref={precioRef} className="right-0 precio text-white bottom-0 fixed mr-20 mb-10 text-7xl text-center">
+                <div ref={precioRef} className="right-0 precio text-white bottom-0 fixed mr-20 mb-10 text-5xl 2xl:text-7xl text-center">
                   <p className=""> ${publicidadesProductos[contador]?.producto?.precio} </p>
                 </div>
               </div>
