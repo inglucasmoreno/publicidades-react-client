@@ -59,37 +59,33 @@ export const PublicacionesModal = () => {
                 })}
               />
 
-              <div className="mt-4">
-                <p className="font-semibold"> Tema </p>
-                <select
-                  {...register('tema', {
-                    required: { value: true, message: 'El campo es obligatorio' }
-                  })}
-                  defaultValue={activePublicidad.tema}
-                  className="border-2 w-full cursor-pointer dark:border-zinc-700 dark:bg-zinc-900 p-3 mt-2 rounded-lg">
-                  {TemasPublicidades.map((tema) => (
-                    <option key={tema.key} value={tema.key}>
-                      {tema.value}
-                    </option>
-                  ))}
-                </select>
-              </div>
+              <select
+                {...register('tema', {
+                  required: { value: true, message: 'El campo es obligatorio' }
+                })}
+                defaultValue={activePublicidad.tema}
+                className="border-2 w-full cursor-pointer dark:border-zinc-700 dark:bg-zinc-900 p-3 mt-4 rounded-lg">
+                {TemasPublicidades.map((tema) => (
+                  <option key={tema.key} value={tema.key}>
+                    {tema.value}
+                  </option>
+                ))}
+              </select>
 
-              <div className="mt-4">
-                <p className="font-semibold"> Productos por pagina </p>
-                <select
-                  {...register('cantidad_muestra', {
-                    required: { value: true, message: 'El campo es obligatorio' }
-                  })}
-                  defaultValue={activePublicidad.cantidad_muestra}
-                  className="border-2 w-full cursor-pointer dark:border-zinc-700 dark:bg-zinc-900 p-3 mt-2 rounded-lg">
-                  <option value="3"> 3 productos </option>
-                  <option value="5"> 5 productos </option>
-                  <option value="10"> 10 productos </option>
-                  <option value="15"> 15 productos </option>
-                  <option value="20"> 20 productos </option>
-                </select>
-              </div>
+              <Input
+                type="number"
+                variant="bordered"
+                className="mt-4"
+                autoFocus
+                defaultValue={activePublicidad.id === 0 ? '' : String(activePublicidad.cantidad_muestra)}
+                validationState={errors.cantidad_muestra ? 'invalid' : 'valid'}
+                errorMessage={errors?.cantidad_muestra?.message}
+                label="Productos x pagina"
+                {...register('cantidad_muestra', {
+                  required: { value: true, message: 'El campo es obligatorio' },
+                  min: { value: 0, message: 'No se admiten numeros negativos' }
+                })}
+              />
 
               {
                 !isLoadingPublicidadesModal
