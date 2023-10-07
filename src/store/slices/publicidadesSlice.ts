@@ -9,6 +9,7 @@ export const publicidadesSlice = createSlice({
     activePublicidad: {
       id: 0,
       descripcion: '',
+      cantidad_muestra: 10,
       tema: 'Basico',
       publicidadesProductos: [],
       activo: true

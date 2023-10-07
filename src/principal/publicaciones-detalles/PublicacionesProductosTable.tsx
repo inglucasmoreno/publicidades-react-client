@@ -246,9 +246,12 @@ export const PublicacionesProductosTable = () => {
 
       case "destacado":
         return (
-          <Chip className="capitalize" color={statusColorMap[row.destacado ? 'activo' : 'inactivo']} size="sm" variant="flat">
-            {row.destacado ? 'Si' : 'No'}
-          </Chip>
+          <div>
+            {
+              row.destacado &&
+              <img className="w-7" src="/assets/svg/estrella.svg" alt="estrella.svg" />
+            }
+          </div>
         );
 
       case "activo":

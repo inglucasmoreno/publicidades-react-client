@@ -72,14 +72,19 @@ export const PublicacionesDetallesPage = () => {
             </DropdownMenu>
           </Dropdown>
         </div>
+
         <div className="flex items-center justify-center">
           <select className="border-2 w-52 cursor-pointer dark:border-zinc-700 dark:bg-zinc-900 p-3 mt-4 rounded-lg">
             {TemasPublicidades.map((tema) => (
               <option key={tema.key} value={tema.key}> {tema.value} </option>
             ))}
           </select>
+          {activePublicidad &&
+            <div className="py-3 px-5 dark:bg-zinc-900 bg-gray-100 text-gray-500 dark:text-gray-300 border-2 dark:border-zinc-600 mt-4 ml-4 rounded-lg">
+              { activePublicidad.cantidad_muestra } productos x pagina
+            </div>
+          }
         </div>
-
 
         <PublicacionesProductosHeader />
         <PublicacionesProductosTable />

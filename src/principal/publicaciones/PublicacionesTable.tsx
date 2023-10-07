@@ -131,6 +131,11 @@ export const PublicacionesTable = () => {
     },
 
     {
+      key: "cantidad_muestra",
+      label: "Productos x pagina",
+    },
+
+    {
       key: "activo",
       label: "ESTADO",
     },

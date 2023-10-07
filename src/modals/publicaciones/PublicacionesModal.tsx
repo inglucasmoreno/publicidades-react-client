@@ -16,12 +16,18 @@ export const PublicacionesModal = () => {
     if (isPublicidadOpen) reset()
   }, [isPublicidadOpen])
 
-  const onSubmit = handleSubmit((data) => {
+  const onSubmit = handleSubmit((data: any) => {
+
+    const dataForm = {
+      descripcion: data.descripcion,
+      tema: data.tema,
+      cantidad_muestra: Number(data.cantidad_muestra)
+    }
 
     if (activePublicidad.id !== 0) {
-      updatePublicidad(data);
+      updatePublicidad(dataForm);
     } else {
-      addNewPublicidad(data);
+      addNewPublicidad(dataForm);
     }
 
   })
@@ -53,18 +59,37 @@ export const PublicacionesModal = () => {
                 })}
               />
 
-              <select
-                {...register('tema', {
-                  required: { value: true, message: 'El campo es obligatorio' }
-                })}
-                defaultValue={ activePublicidad.tema }
-                className="border-2 w-full cursor-pointer dark:border-zinc-700 dark:bg-zinc-900 p-3 mt-4 rounded-lg">
-                {TemasPublicidades.map((tema) => (
-                  <option key={tema.key} value={tema.key}>
-                    {tema.value}
-                  </option>
-                ))}
-              </select>
+              <div className="mt-4">
+                <p className="font-semibold"> Tema </p>
+                <select
+                  {...register('tema', {
+                    required: { value: true, message: 'El campo es obligatorio' }
+                  })}
+                  defaultValue={activePublicidad.tema}
+                  className="border-2 w-full cursor-pointer dark:border-zinc-700 dark:bg-zinc-900 p-3 mt-2 rounded-lg">
+                  {TemasPublicidades.map((tema) => (
+                    <option key={tema.key} value={tema.key}>
+                      {tema.value}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              <div className="mt-4">
+                <p className="font-semibold"> Productos por pagina </p>
+                <select
+                  {...register('cantidad_muestra', {
+                    required: { value: true, message: 'El campo es obligatorio' }
+                  })}
+                  defaultValue={activePublicidad.cantidad_muestra}
+                  className="border-2 w-full cursor-pointer dark:border-zinc-700 dark:bg-zinc-900 p-3 mt-2 rounded-lg">
+                  <option value="3"> 3 productos </option>
+                  <option value="5"> 5 productos </option>
+                  <option value="10"> 10 productos </option>
+                  <option value="15"> 15 productos </option>
+                  <option value="20"> 20 productos </option>
+                </select>
+              </div>
 
               {
                 !isLoadingPublicidadesModal
