@@ -12,14 +12,18 @@ export const ReproduccionesPage = () => {
 
   let imagenRef = useRef(null);
   let imagenNormalRef = useRef(null);
+  let logoPantallaVeneziaRef = useRef(null);
   let precioRef = useRef(null);
   let descripcionRef = useRef(null);
   let descuentoRef = useRef(null);
   let comentariosRef = useRef(null);
   let fraseRef = useRef(null);
 
-  let cantidadMuestra = 10;
+  let cantidadMuestra = 7; // Cantidad de elementos
+  let cantidadPantallaVenezia = 12 // Cantidad para mostrar pantalla de venezia
   let limitSuperior = cantidadMuestra;
+  let tiempoCambio = 6; // Segundos
+  let contadorVeneziaTMP = 1;
 
   const [contador, setContador] = useState(0);
   const [contadorVenezia, setContadorVenezia] = useState(0);
@@ -69,7 +73,7 @@ export const ReproduccionesPage = () => {
       setComentarios(comentarioConSaltoTMP);
 
       // Interval - Change product
-      const intervalId = setInterval(changeProduct, 6000);
+      const intervalId = setInterval(changeProduct, tiempoCambio * 1000);
       return () => clearInterval(intervalId);
 
     }
@@ -95,20 +99,16 @@ export const ReproduccionesPage = () => {
 
     setNumeroFondo(numeroFondo);
 
-    // gsap.from(divImagenNormal, { translateY: -100, duration: 0.5, opacity: 0, ease: "sine" });
     gsap.from(divImagenNormal, { translateY: -100, duration: 0.5, opacity: 0, ease: "sine" });
 
     if (numeroEstilo === 0) { // Animacion elastica
-      console.log('1')
       gsap.from(descripcionProducto, { x: 100, opacity: 0, delay: 1, duration: 2, ease: "elastic" });
       gsap.from(divImagen, { rotate: 360, delay: 1, translateY: -200, translateX: 200, opacity: 0, duration: 1, ease: "bounce" }); // Giro
       gsap.from(divPrecio, { delay: 2, y: 50, duration: 1, opacity: 0, ease: "elastic" });
       gsap.from(divComentarios, { delay: 2, translateX: -100, duration: 0.5, opacity: 0, ease: "sine" });
       gsap.from(divDescuento, { delay: 3, width: 0, duration: 1, opacity: 0, ease: "elastic" });
       gsap.from(divFrase, { delay: 4, translateX: -100, duration: 1, opacity: 0, ease: "elastic" });
-
     } else if (numeroEstilo === 1) { // Animacion de aparicion
-      console.log('2')
       gsap.from(descripcionProducto, { x: 100, opacity: 0, delay: 1, duration: 2, ease: "elastic" });
       gsap.from(divImagen, { delay: 1, translateY: 100, opacity: 0, duration: 1, ease: "bounce" });  // Bounce
       gsap.from(divPrecio, { delay: 2, y: 50, duration: 1, opacity: 0, ease: "elastic" });
@@ -116,7 +116,6 @@ export const ReproduccionesPage = () => {
       gsap.from(divDescuento, { rotate: 360, translateY: -200, translateX: 200, opacity: 0, duration: 1, delay: 3, ease: "bounce" });
       gsap.from(divFrase, { delay: 4, translateX: -100, duration: 1, opacity: 0, ease: "elastic" });
     } else { // Animacion de giro
-      console.log('3')
       gsap.from(descripcionProducto, { x: 100, opacity: 0, delay: 1, duration: 2, ease: "elastic" });
       gsap.from(divImagen, { rotate: 360, delay: 1, translateY: -200, translateX: 200, opacity: 0, duration: 1, ease: "bounce" }); // Giro
       gsap.from(divPrecio, { delay: 2, y: 50, duration: 1, opacity: 0, ease: "elastic" });
@@ -127,16 +126,25 @@ export const ReproduccionesPage = () => {
 
   }, [contador]);
 
+  useEffect(() => {
+    const divLogoPantallaVenezia = logoPantallaVeneziaRef.current;
+    gsap.from(divLogoPantallaVenezia, { delay: 0.5, translateY: -100, duration: 0.5, opacity: 0, ease: "sine" });
+  }, [contadorVenezia])
+
   const changeProduct = () => {
 
     // Muestra -> pantalla venezia
     setContadorVenezia((prev) => {
-      if (prev === 5) {
+      contadorVeneziaTMP = prev + 1;
+      if (prev === cantidadPantallaVenezia) {
+        contadorVeneziaTMP = 0;
         return 0;
       } else {
         return prev + 1;
       }
     });
+
+    if (contadorVeneziaTMP === cantidadPantallaVenezia - 1) return
 
     // Muestra normal de productos
     setContador((prev) => {
@@ -184,7 +192,7 @@ export const ReproduccionesPage = () => {
       const blob = await response.blob();
       const objectURL = URL.createObjectURL(blob);
       setImageSrc(objectURL);
-      localStorage.setItem(url, objectURL);
+      try { localStorage.setItem(url, objectURL); } catch { return; }
     }
 
   }
@@ -199,12 +207,17 @@ export const ReproduccionesPage = () => {
           <div>
 
             {
-              contadorVenezia > 100
+              contadorVenezia === cantidadPantallaVenezia
 
                 ?
 
-                <div className="h-screen flex bg-white flex-col items-center justify-center">
-                  <img src="/assets/venezia.png" className="w-1/3" alt="Panaderia venezia" />
+                <div className="h-screen fondoPantallaVenezia flex bg-white flex-col items-center justify-center">
+
+                  {/* Fondo de pantalla */}
+                  <div className="z-10 flex flex-col items-center justify-center">
+                    <img ref={logoPantallaVeneziaRef} className="w-1/3" src="/assets/venezia.png" />
+                  </div>
+
                 </div>
 
                 :
@@ -218,8 +231,8 @@ export const ReproduccionesPage = () => {
                         <div className="w-1/2">
                           <div className="text-white border-r-3 border-red-800 h-screen">
                             {/* <h2 className="font-semibold px-10 py-4 text-6xl text-center titulo-listado mt-10"> NUESTRO PRODUCTOS </h2> */}
-                            <img src="/assets/venezia-blanco.png" className="w-1/3 pt-7 mx-auto logoVenezia" alt="Venezia" />
-                            <div className="text-3xl listadoProductos pl-2 bg-black bg-opacity-50 mx-5 pr-10 pb-4 pt-5 mt-10">
+                            <img src="/assets/venezia-blanco.png" className="w-1/3 pt-7 mx-auto logoVenezia" />
+                            <div className="text-xl 2xl:text-3xl listadoProductos pl-2 bg-black bg-opacity-50 mx-5 pr-10 pb-4 pt-5 mt-10">
                               {
                                 publicidadesProductos.map((elemento, index) => (
                                   <div className="pl-5 item-listado mt-4">
@@ -231,7 +244,7 @@ export const ReproduccionesPage = () => {
                                         <div className="flex items-center">
                                           {
                                             elemento.destacado &&
-                                            <img className="w-10 estrella" src="/assets/svg/estrella.svg" alt="estrella" />
+                                            <img className="w-10 estrella" src="/assets/svg/estrella.svg" />
                                           }
                                           <p className={elemento.destacado ? "py-4 ml-3 text-yellow-300" : "py-4"}>
                                             {elemento?.producto?.descripcion}
@@ -249,15 +262,14 @@ export const ReproduccionesPage = () => {
                           </div>
                         </div>
                         <div className="w-1/2">
-                          <img ref={imagenNormalRef} className="w-full h-screen" src={imageSrc} alt="Imagen" />
+                          <img ref={imagenNormalRef} className="w-full h-screen" src={imageSrc} />
                         </div>
                       </div>
                       :
-                      <div className={`h-screen transition duration-500 fondo${numeroFondo}`}>
+
+                      <div className={`h-screen transition overflow-hidden duration-500 fondo${numeroFondo}`}>
 
                         {/* Contenido de publicidad */}
-
-                        {/* <img ref={logoVeneziaRef} src="/assets/venezia.png" className="w-96 fixed p-10 left-20 bottom-20" alt="Venezia" /> */}
 
                         <div className="z-10">
                           <div className="z-30 w-full mt-10 fixed ml-10">
@@ -301,7 +313,7 @@ export const ReproduccionesPage = () => {
                             </div>
                           </div>
                           <div className="flex items-center justify-center mt-10 w-full fixed h-screen">
-                            <img ref={imagenRef} className="z-20 max-w-xl 2xl:max-w-2xl" src={imageSrc} alt="Imagen" />
+                            <img ref={imagenRef} className="z-20 max-w-xl 2xl:max-w-2xl" src={imageSrc} />
                           </div>
                           <div ref={precioRef} className="right-0 precio text-white bottom-0 fixed mr-20 mb-10 text-5xl 2xl:text-7xl text-center">
                             <p className=""> ${publicidadesProductos[contador]?.producto?.precio} </p>
@@ -317,6 +329,9 @@ export const ReproduccionesPage = () => {
                         </svg>
 
                       </div>
+
+
+
                   }
 
 
@@ -329,7 +344,7 @@ export const ReproduccionesPage = () => {
 
             <div className="w-full h-screen flex items-center bg-zinc-900 justify-center">
               <div className="text-3xl">
-                <img className="w-1/2 mx-auto" src="/assets/logo.png" alt="logo.png" />
+                <img className="w-1/2 mx-auto" src="/assets/logo.png" />
                 <p className="text-xl text-center mt-3">
                   <Spinner labelColor="secondary" color="secondary">
                     Cargando publicidad
@@ -342,7 +357,7 @@ export const ReproduccionesPage = () => {
 
             <div className="w-full h-screen flex items-center bg-zinc-900 justify-center">
               <div className="text-3xl">
-                <img className="w-1/2 mx-auto" src="/assets/logo.png" alt="logo.png" />
+                <img className="w-1/2 mx-auto" src="/assets/logo.png" />
                 <p className="text-zinc-300 mt-10 mx-auto text-center">
                   LA PUBLICIDAD NO TIENE PRODUCTOS CARGADOS
                 </p>
