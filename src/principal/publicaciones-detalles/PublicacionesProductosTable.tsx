@@ -167,11 +167,6 @@ export const PublicacionesProductosTable = () => {
     },
 
     {
-      key: "tipo",
-      label: "TIPO",
-    },
-
-    {
       key: "producto.descripcion",
       label: "PRODUCTO",
     },

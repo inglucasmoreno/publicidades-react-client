@@ -99,25 +99,28 @@ export const ReproduccionesPage = () => {
     gsap.from(divImagenNormal, { translateY: -100, duration: 0.5, opacity: 0, ease: "sine" });
 
     if (numeroEstilo === 0) { // Animacion elastica
+      console.log('1')
       gsap.from(descripcionProducto, { x: 100, opacity: 0, delay: 1, duration: 2, ease: "elastic" });
-      gsap.from(divImagen, { y: -1000, delay: 1, opacity: 0, duration: 2, ease: "elastic" });
+      gsap.from(divImagen, { rotate: 360, delay: 1, translateY: -200, translateX: 200, opacity: 0, duration: 1, ease: "bounce" }); // Giro
       gsap.from(divPrecio, { delay: 2, y: 50, duration: 1, opacity: 0, ease: "elastic" });
-      gsap.from(divComentarios, { delay: 2, translateX: -1000, duration: 0.2, opacity: 0, ease: "sine" });
+      gsap.from(divComentarios, { delay: 2, translateX: -100, duration: 0.5, opacity: 0, ease: "sine" });
       gsap.from(divDescuento, { delay: 3, width: 0, duration: 1, opacity: 0, ease: "elastic" });
       gsap.from(divFrase, { delay: 4, translateX: -100, duration: 1, opacity: 0, ease: "elastic" });
 
     } else if (numeroEstilo === 1) { // Animacion de aparicion
+      console.log('2')
       gsap.from(descripcionProducto, { x: 100, opacity: 0, delay: 1, duration: 2, ease: "elastic" });
-      gsap.from(divImagen, { width: 0, delay: 1, opacity: 0, duration: 1, ease: "bounce" });  // Bounce
+      gsap.from(divImagen, { delay: 1, translateY: 100, opacity: 0, duration: 1, ease: "bounce" });  // Bounce
       gsap.from(divPrecio, { delay: 2, y: 50, duration: 1, opacity: 0, ease: "elastic" });
-      gsap.from(divComentarios, { delay: 2, translateX: -1000, duration: 0.2, opacity: 0, ease: "bounce" });
+      gsap.from(divComentarios, { delay: 2, translateX: -100, duration: 0.5, opacity: 0, ease: "sine" });
       gsap.from(divDescuento, { rotate: 360, translateY: -200, translateX: 200, opacity: 0, duration: 1, delay: 3, ease: "bounce" });
       gsap.from(divFrase, { delay: 4, translateX: -100, duration: 1, opacity: 0, ease: "elastic" });
     } else { // Animacion de giro
+      console.log('3')
       gsap.from(descripcionProducto, { x: 100, opacity: 0, delay: 1, duration: 2, ease: "elastic" });
       gsap.from(divImagen, { rotate: 360, delay: 1, translateY: -200, translateX: 200, opacity: 0, duration: 1, ease: "bounce" }); // Giro
       gsap.from(divPrecio, { delay: 2, y: 50, duration: 1, opacity: 0, ease: "elastic" });
-      gsap.from(divComentarios, { delay: 2, translateX: -1000, duration: 0.2, opacity: 0, ease: "sine" });
+      gsap.from(divComentarios, { delay: 2, translateX: -100, duration: 0.5, opacity: 0, ease: "sine" });
       gsap.from(divDescuento, { delay: 3, width: 0, duration: 1, opacity: 0, ease: "elastic" });
       gsap.from(divFrase, { delay: 4, translateX: -100, duration: 1, opacity: 0, ease: "elastic" });
     }
@@ -298,7 +301,7 @@ export const ReproduccionesPage = () => {
                             </div>
                           </div>
                           <div className="flex items-center justify-center mt-10 w-full fixed h-screen">
-                            <img className="z-20 max-w-xl 2xl:max-w-2xl" ref={imagenRef} src={imageSrc} alt="Imagen" />
+                            <img ref={imagenRef} className="z-20 max-w-xl 2xl:max-w-2xl" src={imageSrc} alt="Imagen" />
                           </div>
                           <div ref={precioRef} className="right-0 precio text-white bottom-0 fixed mr-20 mb-10 text-5xl 2xl:text-7xl text-center">
                             <p className=""> ${publicidadesProductos[contador]?.producto?.precio} </p>
