@@ -20,10 +20,10 @@ export const ReproduccionesPage = () => {
   let fraseRef = useRef(null);
 
   let cantidadMuestra = 7; // Cantidad de elementos
-  let cantidadPantallaVenezia = 12 // Cantidad para mostrar pantalla de venezia
+  let cantidadPantallaVenezia = 2 // Cantidad para mostrar pantalla de venezia
   let limitSuperior = cantidadMuestra;
   let tiempoCambio = 6; // Segundos
-  let contadorVeneziaTMP = 1;
+  let contadorVeneziaTMP = 0;
 
   const [contador, setContador] = useState(0);
   const [contadorVenezia, setContadorVenezia] = useState(0);
@@ -129,7 +129,7 @@ export const ReproduccionesPage = () => {
   useEffect(() => {
     const divLogoPantallaVenezia = logoPantallaVeneziaRef.current;
     gsap.from(divLogoPantallaVenezia, { delay: 0.5, translateY: -100, duration: 0.5, opacity: 0, ease: "sine" });
-  }, [contadorVenezia])
+  }, [contadorVenezia]);
 
   const changeProduct = () => {
 
