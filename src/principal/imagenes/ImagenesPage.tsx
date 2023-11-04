@@ -8,6 +8,7 @@ export const ImagenesPage = () => {
   const { getAllImagenes } = useImagenesStore();
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     getAllImagenes();
   }, [])
 

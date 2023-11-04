@@ -9,6 +9,15 @@
   font-family: 'Nunito', sans-serif;
 } */
 
+* {
+  font-family: 'Nunito Sans', sans-serif;
+}
+
+
+.equi-select {
+  @apply p-3 text-sm cursor-pointer dark:bg-zinc-900 border-2 border-gray-200 dark:border-zinc-700 rounded-lg
+}
+
 input {
   outline: none;
 }

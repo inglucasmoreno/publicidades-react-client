@@ -8,6 +8,7 @@ export const UnidadesMedidaPage = () => {
   const { getAllUnidadesMedida } = useUnidadesMedidaStore();
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     getAllUnidadesMedida();
   }, [])
 

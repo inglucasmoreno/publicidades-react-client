@@ -8,3 +8,4 @@ export * from './imagenes/ImagenesModal.tsx';
 export * from './confirm/ConfirmModal.tsx';
 export * from './publicaciones/PublicacionesModal.tsx';
 export * from './PublicacionesProductos/PublicacionesProductosModal.tsx';
+export * from './cartasDigitales/CartasDigitalesModal.tsx';

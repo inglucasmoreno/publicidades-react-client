@@ -10,6 +10,7 @@ export const UsersPage = () => {
   } = useUsersStore();
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     getAllUsers();
   }, [])
 

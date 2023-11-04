@@ -14,6 +14,7 @@ import {
   Avatar,
   DropdownMenu,
   DropdownItem,
+  Switch,
 } from "@nextui-org/react";
 import { useLocation, useNavigate } from 'react-router-dom';
 import { ProfileModal } from '../../../modals';
@@ -37,7 +38,7 @@ export const Navbar = () => {
     <>
       <ProfileModal />
       <NavbarNextUI
-        className='border-b dark:border-zinc-600 dark:bg-zinc-900 bg-zinc-50'
+        className='border-b dark:border-zinc-600 bg-opacity-40 dark:bg-zinc-900 bg-zinc-200'
         isMenuOpen={isMenuOpen}
         onMenuOpenChange={(event) => setIsMenuOpen(event)}>
         <NavbarContent>
@@ -45,8 +46,12 @@ export const Navbar = () => {
             className="sm:hidden"
           />
           <NavbarBrand>
-            <Link onPress={() => navigate('/')} className="font-bold text-inherit cursor-pointer" color="foreground">
-              EQUINOCCIO
+            <Link onPress={() => navigate('/')} className="flex items-center text-inherit cursor-pointer" color="foreground">
+              <img src="/assets/equinoccio-design.png" className="w-10" alt="logo.svg" />
+              <div>
+                <p className="text-secondary font-semibold ml-2"> EQUINOCCIO </p>
+                <p className="text-primary font-semibold text-xs ml-2"> Design </p>
+              </div>
             </Link>
           </NavbarBrand>
         </NavbarContent>
@@ -54,13 +59,13 @@ export const Navbar = () => {
         <NavbarContent className="hidden sm:flex gap-4" justify="center">
 
           <NavbarItem className='cursor-pointer'>
-            <Link onPress={() => navigate('/')} className={location.pathname === '/' && 'text-secondary'} color="foreground">
+            <Link onPress={() => navigate('/')} className={location.pathname === '/' && 'text-white bg-primary rounded p-2'} color="foreground">
               Inicio
             </Link>
           </NavbarItem>
 
           <NavbarItem className='cursor-pointer'>
-            <Link onPress={() => navigate('/productos')} className={location.pathname === '/productos' && 'text-secondary'} color="foreground">
+            <Link onPress={() => navigate('/productos')} className={location.pathname === '/productos' && 'text-white bg-primary rounded p-2'} color="foreground">
               Productos
             </Link>
           </NavbarItem>
@@ -69,11 +74,19 @@ export const Navbar = () => {
 
             <Dropdown className="ml-2">
               <DropdownTrigger className='cursor-pointer'>
-                <Link color="foreground"> Servicios </Link>
+                <Link
+                  className={
+                    (location.pathname === '/publicidades' ||
+                      location.pathname === '/carta-digital' ||
+                      location.pathname === '/carta')
+                    && 'text-white bg-primary rounded p-2'}
+                  color="foreground"> Servicios
+                </Link>
               </DropdownTrigger>
               <DropdownMenu>
                 <DropdownItem onPress={() => navigate('/publicidades')} key="publicidades"> Publicidades </DropdownItem>
-                <DropdownItem onPress={() => navigate('/carta')} key="carta_digital"> Carta digital </DropdownItem>
+                <DropdownItem onPress={() => navigate('/carta-digital')} key="carta_digital"> Carta digital </DropdownItem>
+                <DropdownItem onPress={() => navigate('/carta')} key="carta_digital"> Carta digital (PDF) </DropdownItem>
               </DropdownMenu>
             </Dropdown>
 
@@ -83,7 +96,16 @@ export const Navbar = () => {
 
             <Dropdown className="ml-2">
               <DropdownTrigger className='cursor-pointer'>
-                <Link color="foreground"> Configuraciones </Link>
+                <Link
+                  color="foreground"
+                  className={
+                    (
+                      location.pathname === '/usuarios' ||
+                      location.pathname === '/unidades_medida' ||
+                      location.pathname === '/imagenes'
+                    )
+                    && 'text-white bg-primary rounded p-2'}
+                > Configuraciones </Link>
               </DropdownTrigger>
               <DropdownMenu>
 
@@ -107,6 +129,20 @@ export const Navbar = () => {
         </NavbarContent>
 
         <NavbarContent justify="end">
+          <Switch
+            defaultSelected={!isDarkMode}
+            onChange={() => toggleDarkMode()}
+            size="md"
+            color="secondary"
+            thumbIcon={({ isSelected, className }) =>
+              !isDarkMode ? (
+                <SunIcon className={className + `${isSelected} ? text-orange-500`} />
+              ) : (
+                <MoonIcon className={className + `${isSelected} ? text-zinc-800`} />
+              )
+            }
+          >
+          </Switch>
           <NavbarItem>
             <Dropdown placement="bottom-end">
               <DropdownTrigger>
@@ -132,26 +168,6 @@ export const Navbar = () => {
                     </span>
                   </div>
 
-                </DropdownItem>
-
-                <DropdownItem
-                  onPress={() => toggleDarkMode()}
-                  key="dark_mode"
-                >
-                  <div className="flex items-center">
-
-                    {
-                      isDarkMode
-                        ? <SunIcon className="w-4 h-4 mr-2" />
-                        : <MoonIcon className="w-4 h-4 mr-2" />
-                    }
-
-                    <span>
-                      {
-                        isDarkMode ? 'Modo claro' : 'Modo oscuro'
-                      }
-                    </span>
-                  </div>
                 </DropdownItem>
 
                 <DropdownItem className="text-danger-500" onClick={() => logout()} key="logout" color="danger">
@@ -182,7 +198,7 @@ export const Navbar = () => {
               key="inicio"
               size='lg'
               color='foreground'
-              className={location.pathname === '/' ? 'text-secondary w-full' : 'w-full'}
+              className={location.pathname === '/' ? 'bg-primary p-2 bg-opacity-90 rounded text-white w-full' : 'w-full'}
             >
               Inicio
             </Link>
@@ -196,7 +212,7 @@ export const Navbar = () => {
                 key="usuarios"
                 size='lg'
                 color='foreground'
-                className={location.pathname === '/usuarios' ? 'text-secondary w-full' : 'w-full'}
+                className={location.pathname === '/usuarios' ? 'bg-primary p-2 bg-opacity-90 rounded text-white w-full' : 'w-full'}
               >
                 Usuarios
               </Link>
@@ -209,7 +225,7 @@ export const Navbar = () => {
               key="productos"
               size='lg'
               color='foreground'
-              className={location.pathname === '/productos' ? 'text-secondary w-full' : 'w-full'}
+              className={location.pathname === '/productos' ? 'bg-primary p-2 bg-opacity-90 rounded text-white w-full' : 'w-full'}
             >
               Productos
             </Link>
@@ -221,9 +237,21 @@ export const Navbar = () => {
               key="publicidades"
               size='lg'
               color='foreground'
-              className={location.pathname === '/publicidades' ? 'text-secondary w-full' : 'w-full'}
+              className={location.pathname === '/publicidades' ? 'bg-primary p-2 bg-opacity-90 rounded text-white w-full' : 'w-full'}
             >
               Publicidades
+            </Link>
+          </NavbarMenuItem>
+
+          <NavbarMenuItem className='cursor-pointer'>
+            <Link
+              onPress={() => navigateTo('/carta-digital')}
+              key="carta-digital"
+              size='lg'
+              color='foreground'
+              className={location.pathname === '/carta-digital' ? 'bg-primary p-2 bg-opacity-90 rounded text-white w-full' : 'w-full'}
+            >
+              Carta digital
             </Link>
           </NavbarMenuItem>
 
@@ -233,9 +261,9 @@ export const Navbar = () => {
               key="carta"
               size='lg'
               color='foreground'
-              className={location.pathname === '/carta' ? 'text-secondary w-full' : 'w-full'}
+              className={location.pathname === '/carta' ? 'bg-primary p-2 bg-opacity-90 rounded text-white w-full' : 'w-full'}
             >
-              Carta
+              Carta digital (PDF)
             </Link>
           </NavbarMenuItem>
 
@@ -247,7 +275,7 @@ export const Navbar = () => {
                 key="unidades_medida"
                 size='lg'
                 color='foreground'
-                className={location.pathname === '/unidades_medida' ? 'text-secondary w-full' : 'w-full'}
+                className={location.pathname === '/unidades_medida' ? 'bg-primary p-2 bg-opacity-90 rounded text-white w-full' : 'w-full'}
               >
                 Unidades de medida
               </Link>
@@ -262,7 +290,7 @@ export const Navbar = () => {
                 key="imagenes"
                 size='lg'
                 color='foreground'
-                className={location.pathname === '/imagenes' ? 'text-secondary w-full' : 'w-full'}
+                className={location.pathname === '/imagenes' ? 'bg-primary p-2 bg-opacity-90 rounded text-white w-full' : 'w-full'}
               >
                 Imagenes
               </Link>

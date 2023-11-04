@@ -7,6 +7,7 @@ export const PublicacionesPage = () => {
   const { getAllPublicidades } = usePublicidadesStore();
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     getAllPublicidades();
   }, [])
 

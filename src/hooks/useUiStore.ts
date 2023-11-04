@@ -5,6 +5,7 @@ import {
   onToggleDarkMode,
   onToggleNewUser,
   onToggleUnidadMedida,
+  onToggleCartaDigital,
   onToggleProducto,
   onToggleImagen,
   onTogglePublicidad,
@@ -23,6 +24,7 @@ export const useUiStore = () => {
     isDarkMode,
     isUserOpen,
     isUnidadMedidaOpen,
+    isCartaDigitalOpen,
     isProductoOpen,
     isImagenOpen,
     isPublicidadOpen,
@@ -76,6 +78,11 @@ export const useUiStore = () => {
     dispatch(onToggleUnidadMedida());
   }
 
+  // Carta digital - Modal
+  const toggleCartaDigital = () => {
+    dispatch(onToggleCartaDigital());
+  }
+
   // Producto - Modal
   const toggleProducto = () => {
     dispatch(onToggleProducto());
@@ -122,6 +129,7 @@ export const useUiStore = () => {
     isDarkMode,
     isUserOpen,
     isUnidadMedidaOpen,
+    isCartaDigitalOpen,
     isProductoOpen,
     isImagenOpen,
     isPublicidadOpen,
@@ -136,6 +144,7 @@ export const useUiStore = () => {
     toggleDarkMode,
     toggleUser,
     toggleProducto,
+    toggleCartaDigital,
     toggleProfile,
     toggleUnidadMedida,
     toggleImagen,

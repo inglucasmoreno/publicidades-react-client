@@ -21,6 +21,7 @@ export const PublicacionesDetallesPage = () => {
   }
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     getPublicidad(Number(idPublicidad));
   }, [])
 

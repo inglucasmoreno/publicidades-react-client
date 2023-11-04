@@ -1,7 +1,7 @@
 import { Button } from "@nextui-org/react"
 import { BookIcon } from "../../icons"
 import { useForm } from "react-hook-form";
-import { useState } from "react";
+import { useState, useEffect } from 'react';
 import { useCarta } from "../../hooks";
 
 export const CartaPage = () => {
@@ -9,6 +9,10 @@ export const CartaPage = () => {
   const [errorForm, setErrorForm] = useState('');
   const { register, handleSubmit, reset } = useForm<any>();
   const { subirCarta, isLoadingCarta } = useCarta();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const onSubmit = handleSubmit((data: any) => {
 

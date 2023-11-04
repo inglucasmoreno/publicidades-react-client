@@ -7,6 +7,7 @@ export const ProductosPage = () => {
   const { getAllProductos } = useProductosStore();
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     getAllProductos();
   }, [])
 

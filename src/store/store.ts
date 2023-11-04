@@ -1,7 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit'
 import { 
   authSlice, 
-  unidadesMedidaSlice, 
+  unidadesMedidaSlice,
+  cartasDigitalesSlice, 
   productosSlice, 
   imagenesSlice,
   sidebarSlice, 
@@ -19,6 +20,7 @@ export const store = configureStore({
     users: usersSlice.reducer,
     ui: uiSlice.reducer,
     unidadesMedida: unidadesMedidaSlice.reducer,
+    cartasDigitales: cartasDigitalesSlice.reducer,
     productos: productosSlice.reducer,
     imagenes: imagenesSlice.reducer,
     publicidades: publicidadesSlice.reducer,

@@ -4,7 +4,8 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
 
 import { useAuthStore } from '../../hooks';
-import { Button, Card, CardHeader, Input } from '@nextui-org/react';
+import { Button, Input } from '@nextui-org/react';
+
 
 type FormLogin = {
   username: string,
@@ -33,66 +34,52 @@ export const LoginPage = () => {
   })
 
   return (
-    <div className='h-screen bg-background flex items-center justify-center'>
+    <div>
 
-      <Card className="px-4 pt-2 pb-4 w-11/12 md:w-1/2 lg:w-1/3 xl:w-1/4">
-        <form onSubmit={onSubmit}>
 
-          <CardHeader>
-            <div className='text-center w-full flex flex-col items-center justify-center'>
-              <h1 className="text-xl font-semibold text-center w-full">
-                SISTEMA DE PUBLICIDADES
-              </h1>
-              <h2>
-                Ingreso al sistema
-              </h2>
+      <div className="flex">
+
+        <div className="w-full md:w-1/2 mt-20 md:mt-0 md:flex md:items-center md:justify-center">
+          <form onSubmit={onSubmit} className="w-11/12 mx-auto md:w-1/2">
+            <div className="text-center">
+              <img src="/assets/equinoccio-design.png" className="w-24 md:w-36 mx-auto" alt="Equinoccio-Designe" />
+              <h1 className="text-2xl md:text-3xl font-semibold mt-5 text-secondary"> INGRESO AL SISTEMA </h1>
+              <p className="font-semibold mt-2 text-primary"> Version 1.0.0 </p>
             </div>
-          </CardHeader>
+            <div className="mt-10">
+              <Input
+                label="Usuario"
+                variant='bordered'
+                color="secondary"
+                placeholder='Escribe tu usuario'
+                {...register("username")}
+                validationState={errors.username ? 'invalid' : 'valid'}
+                errorMessage={errors?.username?.message}
+                size='lg' />
+            </div>
+            <div className="mt-10">
+              <Input
+                label="Contraseña"
+                variant='bordered'
+                color="secondary"
+                {...register("password")}
+                type="password"
+                validationState={errors.password ? 'invalid' : 'valid'}
+                errorMessage={errors?.password?.message}
+                placeholder='Escribe tu contraseña'
+                size='lg' />
+            </div>
+            <Button isLoading={isLoading} type="submit" color='secondary' size='lg' className="w-full mt-10 py-6">
+              { isLoading ? 'Comprobando' : 'Iniciar sesion' }
+            </Button>
+          </form>
+        </div>
 
-          {/* <h1 className="text-center text-2xl mb-2 text-slate-800"></h1> */}
+        <div className="w-1/2 hidden bg-secondary md:flex flex-col items-center justify-center h-screen">
+          <img src="/assets/svg/login.svg" alt="logo.png" />
+        </div>
 
-          <Input
-            className='mt-2'
-            radius='none'
-            type="text"
-            {...register("username")}
-            validationState={errors.username ? 'invalid' : 'valid'}
-            errorMessage={errors?.username?.message}
-            variant="bordered"
-            label="Usuario"
-          />
-
-          <Input
-            className='mt-4'
-            radius='none'
-            {...register("password")}
-            type="password"
-            validationState={errors.password ? 'invalid' : 'valid'}
-            errorMessage={errors?.password?.message}
-            variant="bordered"
-            label="Contraseña"
-          />
-
-          {
-
-            !isLoading
-
-              ?
-
-              <Button type="submit" className='w-full mt-4' color="secondary">
-                Ingresar
-              </Button>
-
-              :
-
-              <Button className='w-full mt-4' color="secondary" isLoading>
-                Cargando
-              </Button>
-
-          }
-
-        </form>
-      </Card>
+      </div>
 
     </div>
 

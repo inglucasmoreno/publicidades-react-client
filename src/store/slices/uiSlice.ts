@@ -6,6 +6,7 @@ export const uiSlice = createSlice({
     isDarkMode: false,
     isUserOpen: false,
     isUnidadMedidaOpen: false,
+    isCartaDigitalOpen: false,
     isProductoOpen: false,
     isImagenOpen: false,
     isPublicidadOpen: false,
@@ -31,6 +32,10 @@ export const uiSlice = createSlice({
 
     onToggleUnidadMedida: (state) => {
       state.isUnidadMedidaOpen = !state.isUnidadMedidaOpen;
+    },
+
+    onToggleCartaDigital: (state) => {
+      state.isCartaDigitalOpen = !state.isCartaDigitalOpen;
     },
 
     onToggleProducto: (state) => {
@@ -76,6 +81,7 @@ export const {
   onToggleDarkMode,
   onToggleNewUser,
   onToggleUnidadMedida,
+  onToggleCartaDigital,
   onToggleProducto,
   onToggleImagen,
   onTogglePublicidad,

@@ -275,7 +275,7 @@ export const ImagenesTable = () => {
       }}
     >
       <TableHeader columns={columns}>
-        {(column) => <TableColumn allowsSorting key={column.key}>{column.label}</TableColumn>}
+        {(column) => <TableColumn className="bg-secondary text-white" allowsSorting key={column.key}>{column.label}</TableColumn>}
       </TableHeader>
       <TableBody
         emptyContent={"No se encontraron imagenes"}

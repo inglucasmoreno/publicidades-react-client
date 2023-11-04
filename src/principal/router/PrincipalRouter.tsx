@@ -10,6 +10,7 @@ import { PublicacionesPage } from '../publicaciones/PublicacionesPage';
 import { PublicacionesDetallesPage } from "../publicaciones-detalles"
 import { useAuthStore } from "../../hooks"
 import { CartaPage } from "../carta"
+import { CartasDigitalesPage } from "../cartasDigitales"
 
 export const PrincipalRouter = () => {
 
@@ -38,6 +39,7 @@ export const PrincipalRouter = () => {
         <Route path="/productos" element={<ProductosPage />} />
         <Route path="/imagenes" element={<ImagenesPage />} />
         <Route path="/publicidades" element={<PublicacionesPage />} />
+        <Route path="/carta-digital" element={<CartasDigitalesPage />} />
         <Route path="/carta" element={<CartaPage />} />
         <Route path="/publicidades/configuraciones/:idPublicidad" element={<PublicacionesDetallesPage />} />
         <Route path="/*" element={<Navigate to="/" />} />

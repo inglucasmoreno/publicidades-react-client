@@ -1,21 +1,21 @@
 import { Button, Chip, ChipProps, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger, Input, Pagination, Select, SelectItem, SortDescriptor, Spinner, Table, TableBody, TableCell, TableColumn, TableHeader, TableRow } from "@nextui-org/react"
 import { Key, useCallback, useMemo, useState } from "react";
-import { useUiStore, useUnidadesMedidaStore } from "../../hooks";
+import { useUiStore, useCartasDigitalesStore } from "../../hooks";
 import { DislikeIcon, EditIcon, LikeIcon, MenuIcon } from "../../icons";
 import { format } from "date-fns";
-import { IUnidadesMedida } from "../../interfaces/UnidadesMedida";
+import { ICartasDigitales } from "../../interfaces/CartasDigitales";
 import { ActiveItems } from "../../constants";
 
-export const UnidadesMedidaTable = () => {
+export const CartasDigitalesTable = () => {
 
   const {
-    unidadesMedida,
-    isLoadingUnidadesMedida,
-    setActiveUnidadMedida,
-    activeInactiveUnidadMedida
-  } = useUnidadesMedidaStore();
+    cartasDigitales,
+    isLoadingCartasDigitales,
+    setActiveCartaDigital,
+    activeInactiveCartaDigital
+  } = useCartasDigitalesStore();
 
-  const { toggleUnidadMedida } = useUiStore();
+  const { toggleCartaDigital } = useUiStore();
   const [filterValue, setFilterValue] = useState("");
   const [filterActiveValue, setFilterActiveValue] = useState("");
   const [sortDescriptor, setSortDescriptor] = useState<SortDescriptor>({
@@ -25,21 +25,21 @@ export const UnidadesMedidaTable = () => {
 
   // Open Modals
 
-  const openUpdateUnidadMedidaModal = (unidad: IUnidadesMedida) => {
-    setActiveUnidadMedida(unidad);
-    toggleUnidadMedida();
+  const openUpdateCartaDigitalModal = (cartaDigital: ICartasDigitales) => {
+    setActiveCartaDigital(cartaDigital);
+    toggleCartaDigital();
   }
 
-  // Activate/Inactivate - Unidad de medida
+  // Activate/Inactivate - Carta digital
 
-  const activateInactivateUnidadMedidaFnc = (unidad: IUnidadesMedida) => {
+  const activateInactivateCartaDigitalFnc = (cartaDigital: ICartasDigitales) => {
 
     let dataUpdate = {
-      id: unidad.id,
-      activo: !unidad.activo
+      id: cartaDigital.id,
+      activo: !cartaDigital.activo
     }
 
-    activeInactiveUnidadMedida(dataUpdate);
+    activeInactiveCartaDigital(dataUpdate);
 
   }
 
@@ -47,7 +47,7 @@ export const UnidadesMedidaTable = () => {
 
   const [page, setPage] = useState(1);
   const rowsPerPage = 10;
-  const pages = Math.ceil(unidadesMedida.length / rowsPerPage);
+  const pages = Math.ceil(cartasDigitales.length / rowsPerPage);
   
   // Filter handler
 
@@ -67,26 +67,26 @@ export const UnidadesMedidaTable = () => {
 
   const filteredItems = useMemo(() => {
 
-    let filteredElements: IUnidadesMedida[] = [...unidadesMedida];
+    let filteredElements: ICartasDigitales[] = [...cartasDigitales];
 
     if (filterActiveValue) {
       filteredElements = filteredElements.filter(element => filterActiveValue === 'true' ? element.activo : !element.activo)
     }
 
-    filteredElements = filteredElements.filter((element: IUnidadesMedida) =>
+    filteredElements = filteredElements.filter((element: ICartasDigitales) =>
       element.descripcion.includes(filterValue.toUpperCase())
     );
 
     return filteredElements;
 
-  }, [unidadesMedida, filterValue, filterActiveValue]);
+  }, [cartasDigitales, filterValue, filterActiveValue]);
 
   // Sort handler
 
   const sortedItems = useMemo(() => {
-    return [...filteredItems].sort((a: IUnidadesMedida, b: IUnidadesMedida) => {
-      const first = a[sortDescriptor.column as keyof IUnidadesMedida] as number;
-      const second = b[sortDescriptor.column as keyof IUnidadesMedida] as number;
+    return [...filteredItems].sort((a: ICartasDigitales, b: ICartasDigitales) => {
+      const first = a[sortDescriptor.column as keyof ICartasDigitales] as number;
+      const second = b[sortDescriptor.column as keyof ICartasDigitales] as number;
       const cmp = first < second ? -1 : first > second ? 1 : 0;
 
       return sortDescriptor.direction === "descending" ? -cmp : cmp;
@@ -110,6 +110,11 @@ export const UnidadesMedidaTable = () => {
     {
       key: "actions",
       label: "ACCIONES",
+    },
+
+    {
+      key: "tema",
+      label: "TEMA",
     },
 
     {
@@ -162,23 +167,23 @@ export const UnidadesMedidaTable = () => {
               </Button>
             </DropdownTrigger>
             <DropdownMenu aria-label="Static Actions">
-              <DropdownItem onPress={() => openUpdateUnidadMedidaModal(row)} key="editar-unidad">
+              <DropdownItem onPress={() => openUpdateCartaDigitalModal(row)} key="editar-carta-digital">
                 <div className="flex items-center">
                   <div>
                     <EditIcon />
                   </div>
                   <span className="ml-2">
-                    Editar unidad
+                    Editar carta
                   </span>
                 </div>
               </DropdownItem>
-              <DropdownItem onPress={() => activateInactivateUnidadMedidaFnc(row)} key="alta-baja-unidad-medida">
+              <DropdownItem onPress={() => activateInactivateCartaDigitalFnc(row)} key="alta-baja-carta-digital">
                 <div className="flex items-center">
                   {
                     row.activo ? <DislikeIcon className="w-4 h-4" /> : <LikeIcon className="w-4 h-4" />
                   }
                   <span className="ml-2">
-                    {row.activo ? 'Baja de unidad' : 'Alta de unidad'}
+                    {row.activo ? 'Baja de carta' : 'Alta de carta'}
                   </span>
                 </div>
               </DropdownItem>
@@ -242,7 +247,7 @@ export const UnidadesMedidaTable = () => {
     <Table
       isStriped
       className="mt-4 pb-4"
-      aria-label="Unidades de medida table"
+      aria-label="Cartas digitales table"
       sortDescriptor={sortDescriptor}
       onSortChange={setSortDescriptor}
       topContent={topContentTable}
@@ -255,8 +260,8 @@ export const UnidadesMedidaTable = () => {
         {(column) => <TableColumn className="bg-secondary text-white" allowsSorting key={column.key}>{column.label}</TableColumn>}
       </TableHeader>
       <TableBody
-        emptyContent={"No se encontraron unidades"}
-        isLoading={isLoadingUnidadesMedida}
+        emptyContent={"No se encontraron cartas digitales"}
+        isLoading={isLoadingCartasDigitales}
         loadingContent={<Spinner label="Cargando..." />}
         items={items}
       >
