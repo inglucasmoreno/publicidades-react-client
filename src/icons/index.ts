@@ -7,6 +7,7 @@ export * from './NewUserIcon';
 export * from './LockCloseIcon';
 export * from './ArrowDownIcon';
 export * from './ArrowUpIcon';
+export * from './BackIcon';
 export * from './LikeIcon';
 export * from './DislikeIcon';
 export * from './UserSolidIcon';

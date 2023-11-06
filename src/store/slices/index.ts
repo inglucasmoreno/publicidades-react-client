@@ -10,3 +10,4 @@ export * from './publicidadesSlice';
 export * from './publicidadesProductosSlice';
 export * from './cartaSlice';
 export * from './cartasDigitalesSlice';
+export * from './cartasSeccionesSlice';

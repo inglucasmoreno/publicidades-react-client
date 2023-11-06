@@ -10,7 +10,8 @@ import {
   usersSlice,
   publicidadesSlice,
   publicidadesProductosSlice,
-  cartaSlice
+  cartaSlice,
+  cartasSeccionesSlice
 } from './slices'
 
 export const store = configureStore({
@@ -21,6 +22,7 @@ export const store = configureStore({
     ui: uiSlice.reducer,
     unidadesMedida: unidadesMedidaSlice.reducer,
     cartasDigitales: cartasDigitalesSlice.reducer,
+    cartasSecciones: cartasSeccionesSlice.reducer,
     productos: productosSlice.reducer,
     imagenes: imagenesSlice.reducer,
     publicidades: publicidadesSlice.reducer,

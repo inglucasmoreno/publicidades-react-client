@@ -39,6 +39,10 @@ export const LoginPage = () => {
 
       <div className="flex">
 
+        <div className="w-1/2 hidden bg-secondary md:flex flex-col items-center justify-center h-screen">
+          <img src="/assets/svg/login.svg" alt="logo.png" />
+        </div>
+
         <div className="w-full md:w-1/2 mt-20 md:mt-0 md:flex md:items-center md:justify-center">
           <form onSubmit={onSubmit} className="w-11/12 mx-auto md:w-1/2">
             <div className="text-center">
@@ -73,10 +77,6 @@ export const LoginPage = () => {
               { isLoading ? 'Comprobando' : 'Iniciar sesion' }
             </Button>
           </form>
-        </div>
-
-        <div className="w-1/2 hidden bg-secondary md:flex flex-col items-center justify-center h-screen">
-          <img src="/assets/svg/login.svg" alt="logo.png" />
         </div>
 
       </div>

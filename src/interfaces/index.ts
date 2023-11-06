@@ -6,3 +6,4 @@ export * from './Imagenes';
 export * from './Publicidades';
 export * from './PublicidadesProductos';
 export * from './CartasDigitales';
+export * from './CartasSecciones';

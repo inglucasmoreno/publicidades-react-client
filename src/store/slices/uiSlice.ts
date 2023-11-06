@@ -7,6 +7,7 @@ export const uiSlice = createSlice({
     isUserOpen: false,
     isUnidadMedidaOpen: false,
     isCartaDigitalOpen: false,
+    isCartaSeccionOpen: false,
     isProductoOpen: false,
     isImagenOpen: false,
     isPublicidadOpen: false,
@@ -36,6 +37,10 @@ export const uiSlice = createSlice({
 
     onToggleCartaDigital: (state) => {
       state.isCartaDigitalOpen = !state.isCartaDigitalOpen;
+    },
+
+    onToggleCartaSeccion: (state) => {
+      state.isCartaSeccionOpen = !state.isCartaSeccionOpen;
     },
 
     onToggleProducto: (state) => {
@@ -82,6 +87,7 @@ export const {
   onToggleNewUser,
   onToggleUnidadMedida,
   onToggleCartaDigital,
+  onToggleCartaSeccion,
   onToggleProducto,
   onToggleImagen,
   onTogglePublicidad,

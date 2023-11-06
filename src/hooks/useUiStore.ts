@@ -6,6 +6,7 @@ import {
   onToggleNewUser,
   onToggleUnidadMedida,
   onToggleCartaDigital,
+  onToggleCartaSeccion,
   onToggleProducto,
   onToggleImagen,
   onTogglePublicidad,
@@ -25,6 +26,7 @@ export const useUiStore = () => {
     isUserOpen,
     isUnidadMedidaOpen,
     isCartaDigitalOpen,
+    isCartaSeccionOpen,
     isProductoOpen,
     isImagenOpen,
     isPublicidadOpen,
@@ -83,6 +85,11 @@ export const useUiStore = () => {
     dispatch(onToggleCartaDigital());
   }
 
+  // Carta seccion - Modal
+  const toggleCartaSeccion = () => {
+    dispatch(onToggleCartaSeccion());
+  }
+
   // Producto - Modal
   const toggleProducto = () => {
     dispatch(onToggleProducto());
@@ -130,6 +137,7 @@ export const useUiStore = () => {
     isUserOpen,
     isUnidadMedidaOpen,
     isCartaDigitalOpen,
+    isCartaSeccionOpen,
     isProductoOpen,
     isImagenOpen,
     isPublicidadOpen,
@@ -145,6 +153,7 @@ export const useUiStore = () => {
     toggleUser,
     toggleProducto,
     toggleCartaDigital,
+    toggleCartaSeccion,
     toggleProfile,
     toggleUnidadMedida,
     toggleImagen,

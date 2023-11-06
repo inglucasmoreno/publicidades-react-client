@@ -5,6 +5,8 @@ import { DislikeIcon, EditIcon, LikeIcon, MenuIcon } from "../../icons";
 import { format } from "date-fns";
 import { ICartasDigitales } from "../../interfaces/CartasDigitales";
 import { ActiveItems } from "../../constants";
+import { FaRegFileLines } from "react-icons/fa6";
+import { useNavigate } from "react-router-dom";
 
 export const CartasDigitalesTable = () => {
 
@@ -15,6 +17,7 @@ export const CartasDigitalesTable = () => {
     activeInactiveCartaDigital
   } = useCartasDigitalesStore();
 
+  const navigate = useNavigate();
   const { toggleCartaDigital } = useUiStore();
   const [filterValue, setFilterValue] = useState("");
   const [filterActiveValue, setFilterActiveValue] = useState("");
@@ -48,7 +51,7 @@ export const CartasDigitalesTable = () => {
   const [page, setPage] = useState(1);
   const rowsPerPage = 10;
   const pages = Math.ceil(cartasDigitales.length / rowsPerPage);
-  
+
   // Filter handler
 
   const handleActiveSelectFilter = (event) => {
@@ -169,11 +172,17 @@ export const CartasDigitalesTable = () => {
             <DropdownMenu aria-label="Static Actions">
               <DropdownItem onPress={() => openUpdateCartaDigitalModal(row)} key="editar-carta-digital">
                 <div className="flex items-center">
-                  <div>
-                    <EditIcon />
-                  </div>
+                  <EditIcon />
                   <span className="ml-2">
                     Editar carta
+                  </span>
+                </div>
+              </DropdownItem>
+              <DropdownItem onPress={() => navigate(`/carta-digital/detalles/${row.id}`)} key="detalles-carta-digital">
+                <div className="flex items-center">
+                  <FaRegFileLines />
+                  <span className="ml-2">
+                    Detalles
                   </span>
                 </div>
               </DropdownItem>

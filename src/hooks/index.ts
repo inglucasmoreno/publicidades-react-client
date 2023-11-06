@@ -9,3 +9,4 @@ export * from './useImagenes';
 export * from './usePublicidades';
 export * from './useCarta';
 export * from './useCartasDigitalesStore';
+export * from './useCartasSeccionesStore';
